@@ -69,7 +69,26 @@ $exit = $false
 foreach($x in $PIDHold){
     echo $x
 }
-
+# function ParentProcess($Id){
+#     $a =@()
+#     $x = 0
+#     $exit = $false
+#     echo 'Test-a'
+#     while($exit -ne $true){
+#         echo 'Test-b'
+#         $a[$x] += (gwmi win32_process | ? processid -eq $Id).parentprocessid
+#         if($a[$x] -eq ''){
+#             echo 'Parent Processes'
+#             foreach($b in $a){
+#                 echo $b
+#             }
+#             $exit = $true
+#         }else{
+#             $Id = $a[$x]
+#         }
+#         $x++
+#     }
+# }
 
 #Replace("[^0-9]",'')
 #($PIDhold | findstr OwningProcess).Split(':')
