@@ -2,7 +2,7 @@
 # Goal is to cleanup the display of information and provide additional options for execution and data pull
 
 # Main function, runs given no parameters
-param($Id, $Name, [switch]$Trace, [switch]$NetOnly, [switch]$help)
+param($Id, $Name, [switch]$Trace, [switch]$NetOnly, [switch]$help, $PPID)
 function PidHunt{
     if($NetOnly){
         foreach($x in (get-ciminstance win32_process)){  
@@ -65,68 +65,69 @@ function PidHunt{
                 }
             }   
         }
-    }
-    foreach($x in (get-ciminstance win32_process)){  
-        $NetInfo = (get-nettcpconnection | ? OwningProcess -eq $x.ProcessId) 
-        Write-Host "<-----Process Information----->" -ForegroundColor green 
-        Write-Host "Process Name: " -NoNewLine
-        Write-Host $x.ProcessName -ForegroundColor green
-        Write-Host "Process ID: " -NoNewLine
-        Write-Host $x.ProcessId -ForegroundColor green
-        Write-Host "Process PPID: " -NoNewLine
-        Write-Host $x.ParentProcessID -ForegroundColor green
-        Write-Host "Creation Date:" $x.CreationDate
-        Write-Host "CSName:" $x.CSName
-        if($x.ExecutablePath){
-           Write-Host "Executable Path:" $x.ExecutablePath 
+    }else{
+        foreach($x in (get-ciminstance win32_process)){  
+            $NetInfo = (get-nettcpconnection | ? OwningProcess -eq $x.ProcessId) 
+            Write-Host "<-----Process Information----->" -ForegroundColor green 
+            Write-Host "Process Name: " -NoNewLine
+            Write-Host $x.ProcessName -ForegroundColor green
+            Write-Host "Process ID: " -NoNewLine
+            Write-Host $x.ProcessId -ForegroundColor green
+            Write-Host "Process PPID: " -NoNewLine
+            Write-Host $x.ParentProcessID -ForegroundColor green
+            Write-Host "Creation Date:" $x.CreationDate
+            Write-Host "CSName:" $x.CSName
+            if($x.ExecutablePath){
+               Write-Host "Executable Path:" $x.ExecutablePath 
+            }
+            if($x.CommandLine){
+                Write-Host "Command Line:" $x.CommandLine
+            }
+            Write-Host
+            if($NetInfo.LocalAddress){
+                Write-Host "<-----Net Information----->" -ForegroundColor green
+                foreach($x in $NetInfo){
+                    Write-Host "State: " -NoNewLine
+                    Write-Host $x.State -ForegroundColor green
+                    if($x.LocalAddress | Select-String -Pattern "::"){
+                        if($x.LocalAddress -eq '::'){
+                            Write-Host "Local IPv6 Address/Port:" -NoNewLine
+                            Write-Host "any" -ForegroundColor red -NoNewLine
+                            Write-Host ":" $x.LocalPort
+                        }else{
+                            Write-Host "Local IPv6 Address/Port: " $x.LocalAddress ":" $x.LocalPort   
+                        }
+                        if($x.RemoteAddress -eq '::'){
+                            Write-Host "Remote IPv6 Address/Port:" -NoNewLine
+                            Write-Host "any" -ForegroundColor red -NoNewLine
+                            Write-Host ":" $x.RemotePort
+                        }else{
+                            Write-Host "Remote IPv6 Address/Port:" $x.RemoteAddress ":" $x.RemotePort
+                        }
+                    }else{
+                        if($x.LocalAddress -eq '0.0.0.0'){
+                            Write-Host "Local IPv4 Address/Port:" -NoNewLine
+                            Write-Host "any" -ForegroundColor red -NoNewLine
+                            Write-Host ":" $x.LocalPort
+                        }else{
+                            Write-Host "Local IPv4 Address/Port:" $x.LocalAddress ":" $x.LocalPort
+                        }
+                        if($x.RemoteAddress -eq '0.0.0.0'){
+                            Write-Host "Remote IPv4 Address/Port:" -NoNewLine
+                            Write-Host "any" -ForegroundColor red -NoNewLine
+                            Write-Host ":" $x.RemotePort
+                        }else{
+                            Write-Host "Remote IPv4 Address/Port:" $x.RemoteAddress ":" $x.RemotePort
+                        }
+                    }
+                    Write-Host
+                }  
+            }
         }
-        if($x.CommandLine){
-            Write-Host "Command Line:" $x.CommandLine
-        }
-        Write-Host
-        if($NetInfo.LocalAddress){
-            Write-Host "<-----Net Information----->" -ForegroundColor green
-            foreach($x in $NetInfo){
-                Write-Host "State: " -NoNewLine
-                Write-Host $x.State -ForegroundColor green
-                if($x.LocalAddress | Select-String -Pattern "::"){
-                    if($x.LocalAddress -eq '::'){
-                        Write-Host "Local IPv6 Address/Port:" -NoNewLine
-                        Write-Host "any" -ForegroundColor red -NoNewLine
-                        Write-Host ":" $x.LocalPort
-                    }else{
-                        Write-Host "Local IPv6 Address/Port: " $x.LocalAddress ":" $x.LocalPort   
-                    }
-                    if($x.RemoteAddress -eq '::'){
-                        Write-Host "Remote IPv6 Address/Port:" -NoNewLine
-                        Write-Host "any" -ForegroundColor red -NoNewLine
-                        Write-Host ":" $x.RemotePort
-                    }else{
-                        Write-Host "Remote IPv6 Address/Port:" $x.RemoteAddress ":" $x.RemotePort
-                    }
-                }else{
-                    if($x.LocalAddress -eq '0.0.0.0'){
-                        Write-Host "Local IPv4 Address/Port:" -NoNewLine
-                        Write-Host "any" -ForegroundColor red -NoNewLine
-                        Write-Host ":" $x.LocalPort
-                    }else{
-                        Write-Host "Local IPv4 Address/Port:" $x.LocalAddress ":" $x.LocalPort
-                    }
-                    if($x.RemoteAddress -eq '0.0.0.0'){
-                        Write-Host "Remote IPv4 Address/Port:" -NoNewLine
-                        Write-Host "any" -ForegroundColor red -NoNewLine
-                        Write-Host ":" $x.RemotePort
-                    }else{
-                        Write-Host "Remote IPv4 Address/Port:" $x.RemoteAddress ":" $x.RemotePort
-                    }
-                }
-                Write-Host
-            }  
-        }
-    }
+    }  
 }
 
-# Function given id 
+# Function given id or PPID
 function PidSnif($ID){
     foreach($x in (get-ciminstance win32_process | ? ProcessId -eq $ID)){  
         $NetInfo = (get-nettcpconnection | ? OwningProcess -eq $x.ProcessId) 
@@ -364,6 +365,132 @@ function PidTrace($Flag){
         }
     }
 }
+
+# Search by PPID
+function PidSpawn($PPID){
+    if($NetOnly){
+        foreach($x in (get-ciminstance win32_process | ? ParentProcessID -eq $PPID)){  
+            $NetInfo = (get-nettcpconnection | ? OwningProcess -eq $x.ProcessId) 
+            if($NetInfo){
+                Write-Host "<-----Process Information----->" -ForegroundColor green 
+                Write-Host "Process Name: " -NoNewLine
+                Write-Host $x.ProcessName -ForegroundColor green
+                Write-Host "Process ID: " -NoNewLine
+                Write-Host $x.ProcessId -ForegroundColor green
+                Write-Host "Process PPID: " -NoNewLine
+                Write-Host $x.ParentProcessID -ForegroundColor green
+                Write-Host "Creation Date:" $x.CreationDate
+                Write-Host "CSName:" $x.CSName
+                if($x.ExecutablePath){
+                   Write-Host "Executable Path:" $x.ExecutablePath 
+                }
+                if($x.CommandLine){
+                    Write-Host "Command Line:" $x.CommandLine
+                }
+                Write-Host
+                if($NetInfo.LocalAddress){
+                    Write-Host "<-----Net Information----->" -ForegroundColor green
+                    foreach($x in $NetInfo){
+                        Write-Host "State: " -NoNewLine
+                        Write-Host $x.State -ForegroundColor green
+                        if($x.LocalAddress | Select-String -Pattern "::"){
+                            if($x.LocalAddress -eq '::'){
+                                Write-Host "Local IPv6 Address/Port:" -NoNewLine
+                                Write-Host "any" -ForegroundColor red -NoNewLine
+                                Write-Host ":" $x.LocalPort
+                            }else{
+                                Write-Host "Local IPv6 Address/Port: " $x.LocalAddress ":" $x.LocalPort   
+                            }
+                            if($x.RemoteAddress -eq '::'){
+                                Write-Host "Remote IPv6 Address/Port:" -NoNewLine
+                                Write-Host "any" -ForegroundColor red -NoNewLine
+                                Write-Host ":" $x.RemotePort
+                            }else{
+                                Write-Host "Remote IPv6 Address/Port:" $x.RemoteAddress ":" $x.RemotePort
+                            }
+                        }else{
+                            if($x.LocalAddress -eq '0.0.0.0'){
+                                Write-Host "Local IPv4 Address/Port:" -NoNewLine
+                                Write-Host "any" -ForegroundColor red -NoNewLine
+                                Write-Host ":" $x.LocalPort
+                            }else{
+                                Write-Host "Local IPv4 Address/Port:" $x.LocalAddress ":" $x.LocalPort
+                            }
+                            if($x.RemoteAddress -eq '0.0.0.0'){
+                                Write-Host "Remote IPv4 Address/Port:" -NoNewLine
+                                Write-Host "any" -ForegroundColor red -NoNewLine
+                                Write-Host ":" $x.RemotePort
+                            }else{
+                                Write-Host "Remote IPv4 Address/Port:" $x.RemoteAddress ":" $x.RemotePort
+                            }
+                        }
+                        Write-Host
+                    }  
+                }
+            }
+        }
+    }else{
+        foreach($x in (get-ciminstance win32_process | ? ParentProcessID -eq $PPID)){  
+            $NetInfo = (get-nettcpconnection | ? OwningProcess -eq $x.ProcessId) 
+            Write-Host "<-----Process Information----->" -ForegroundColor green 
+            Write-Host "Process Name: " -NoNewLine
+            Write-Host $x.ProcessName -ForegroundColor green
+            Write-Host "Process ID: " -NoNewLine
+            Write-Host $x.ProcessId -ForegroundColor green
+            Write-Host "Process PPID: " -NoNewLine
+            Write-Host $x.ParentProcessID -ForegroundColor green
+            Write-Host "Creation Date:" $x.CreationDate
+            Write-Host "CSName:" $x.CSName
+            if($x.ExecutablePath){
+               Write-Host "Executable Path:" $x.ExecutablePath 
+            }
+            if($x.CommandLine){
+                Write-Host "Command Line:" $x.CommandLine
+            }
+            Write-Host
+            if($NetInfo.LocalAddress){
+                Write-Host "<-----Net Information----->" -ForegroundColor green
+                foreach($x in $NetInfo){
+                    Write-Host "State: " -NoNewLine
+                    Write-Host $x.State -ForegroundColor green
+                    if($x.LocalAddress | Select-String -Pattern "::"){
+                        if($x.LocalAddress -eq '::'){
+                            Write-Host "Local IPv6 Address/Port:" -NoNewLine
+                            Write-Host "any" -ForegroundColor red -NoNewLine
+                            Write-Host ":" $x.LocalPort
+                        }else{
+                            Write-Host "Local IPv6 Address/Port: " $x.LocalAddress ":" $x.LocalPort   
+                        }
+                        if($x.RemoteAddress -eq '::'){
+                            Write-Host "Remote IPv6 Address/Port:" -NoNewLine
+                            Write-Host "any" -ForegroundColor red -NoNewLine
+                            Write-Host ":" $x.RemotePort
+                        }else{
+                            Write-Host "Remote IPv6 Address/Port:" $x.RemoteAddress ":" $x.RemotePort
+                        }
+                    }else{
+                        if($x.LocalAddress -eq '0.0.0.0'){
+                            Write-Host "Local IPv4 Address/Port:" -NoNewLine
+                            Write-Host "any" -ForegroundColor red -NoNewLine
+                            Write-Host ":" $x.LocalPort
+                        }else{
+                            Write-Host "Local IPv4 Address/Port:" $x.LocalAddress ":" $x.LocalPort
+                        }
+                        if($x.RemoteAddress -eq '0.0.0.0'){
+                            Write-Host "Remote IPv4 Address/Port:" -NoNewLine
+                            Write-Host "any" -ForegroundColor red -NoNewLine
+                            Write-Host ":" $x.RemotePort
+                        }else{
+                            Write-Host "Remote IPv4 Address/Port:" $x.RemoteAddress ":" $x.RemotePort
+                        }
+                    }
+                    Write-Host
+                }  
+            }
+        }
+    }
+}
+
 if($help){
     Write-Host
     Write-Host "Vynae"
@@ -373,6 +500,9 @@ if($help){
     Write-Host
     Write-Host "    -ID" -ForegroundColor green -NoNewLine
     Write-Host " Used to pull information on a specific ProcessID"
+    Write-Host
+    Write-Host "    -PPID" -ForegroundColor green -NoNewLine
+    Write-Host " Used to list all processes spwaned by the given PPID"
     Write-Host
     Write-Host "    -Name" -ForegroundColor green -NoNewLine
     Write-Host " Used to pull information on ALL processes whose names match the value"
@@ -389,9 +519,19 @@ if($help){
     Write-Host
     exit
 }
+
+# Add netonly to trace?
+# To add -NetStatus -Output -Readable
 if($Trace){
     if($ID){
-        PidTrace($ID)        
+        try{
+            if([int]$ID){
+                PidTrace($ID)
+            }
+        }catch{
+            Write-Host -ForegroundColor red "ERROR"
+            Write-Host "ID must be an integer"
+        }       
     }elseif($Name){
         PidTrace($Name)
     }else{
@@ -399,9 +539,25 @@ if($Trace){
         Write-Host "Specify an ID or Name"
     }
 }elseif($ID){
-    PidSnif($ID)
+    try{
+        if([int]$ID){
+            PidSnif($ID)
+        }
+    }catch{
+        Write-Host -ForegroundColor red "ERROR"
+        Write-Host "ID must be an integer"
+    }
 }elseif($Name){
     PidName($Name)
+}elseif($PPID){
+    try{
+        if([int]$PPID){
+            PidSpawn($PPID)
+        }
+    }catch{
+        Write-Host -ForegroundColor red "ERROR"
+        Write-Host "PPID must be an integer"
+    }
 }else{
     PidHunt
 }

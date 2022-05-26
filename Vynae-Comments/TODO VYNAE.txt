@@ -1,0 +1,7 @@
+-NetStatus x
+	Return only processes with specified status 
+-Output x 
+	Sends data to output JSON?
+-Readable
+	Writes a more human-readable output w/ less info
+	new-object add-member for each process then list properties of obj?
