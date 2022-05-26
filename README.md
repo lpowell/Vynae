@@ -1,9 +1,11 @@
-# Vynae - A PowerShell tool for extracting process information using CIM.
+# Vynae - A PowerShell tool for extracting process information.
 # Usage
 Currently allows for Parent Process tracing, network connection, execution path & launch command, and options to search by name or ID.
 Usage
 
     -ID Used to pull information on a specific ProcessID
+    
+    -PPID Used to search processes spawned by a specific PPID
 
     -Name Used to pull information on ALL processes whose names match the value
 
