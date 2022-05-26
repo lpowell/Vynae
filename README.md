@@ -13,7 +13,10 @@ Usage
             Must specify a -Name or -ID
 
     -NetOnly Used to only pull processes with matching nettcpconnections
-            Can only be used with -Name or defaults
+            Can only be used with -Name, -PPID or defaults
+    
+    -NetStatus Used to pull processes with network connections that match the specified state
+            Can be used with -Name, -PPID, or defaults
 
     Running with no parameters will scan all processes and list process information and network information
 # History
