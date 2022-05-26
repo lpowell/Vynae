@@ -4,6 +4,8 @@ Currently allows for Parent Process tracing, network connection, execution path 
 Usage
 
     -ID Used to pull information on a specific ProcessID
+    
+    -PPID Used to search processes spawned by a specific PPID
 
     -Name Used to pull information on ALL processes whose names match the value
 
