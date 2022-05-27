@@ -2,7 +2,7 @@
 # Goal is to cleanup the display of information and provide additional options for execution and data pull
 
 # Main function, runs given no parameters
-param($Id, $Name, [switch]$Trace, [switch]$NetOnly, [switch]$help, $PPID, $NetStatus)
+param($Id, $Name, [switch]$Trace, [switch]$NetOnly, [switch]$help, $PPID, $NetStatus, $output)
 function PidHunt{
     if($NetOnly){
         foreach($x in (get-ciminstance win32_process)){  
@@ -680,6 +680,18 @@ function PidSpawn($PPID){
     }
 }
 
+# Redirect console stream to file
+function PidOut($output){
+    $ErrorActionPreference="SilentlyContinue"
+    Stop-Transcript | out-null
+    $ErrorActionPreference="Continue"
+    Start-Transcript -path $output -append
+}
+
+
+if($output){
+    PidOut($output)
+}
 if($help){
     Write-Host
     Write-Host "Vynae"
@@ -708,6 +720,9 @@ if($help){
     Write-Host " Used to only pull processes with matching connection states"
     Write-Host "            Can be used with -Name, -PPID, and defaults"
     Write-Host
+    Write-Host "    -Output" -ForegroundColor green -NoNewLine
+    Write-Host " Specifies the output path for the PowerShell transcript of the session"
+    Write-Host
     Write-Host "    -Help" -ForegroundColor green -NoNewLine
     Write-Host " Displays this menu"
     Write-Host
@@ -715,7 +730,6 @@ if($help){
     Write-Host
     exit
 }
-
 # Add netonly to trace?
 # To add -NetStatus -Output -Readable
 if($Trace){
@@ -757,3 +771,4 @@ if($Trace){
 }else{
     PidHunt
 }
+Stop-Transcript
