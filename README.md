@@ -1,6 +1,11 @@
 # Vynae - A PowerShell tool for extracting process information.
-# Usage
-Currently allows for Parent Process tracing, network connection, execution path & launch command, and options to search by name or ID.
+# About
+Vynae is a PowerShell tool that displays key process information and supports a variety of searching methods and process tracing. For example, Vynae can trace a process back to it's originating process, or list all processes spawned by a given PPID. Processes can also be selectively displayed, such as listing only processes with a network state of 'Established'. Currently, Vynae only supports output through Start-Transcript which is accessed with -Output. Output can also be directed to a file using 
+
+    Vynae -SomeParameter SomeArgument *> SomeFile.txt
+
+Which redirects the console stream to a file.
+
 Usage
 
     -ID Used to pull information on a specific ProcessID
@@ -17,6 +22,8 @@ Usage
     
     -NetStatus Used to pull processes with network connections that match the specified state
             Can be used with -Name, -PPID, or defaults
+            
+    -Output Creates a PowerShell transcript at the specified path
 
     Running with no parameters will scan all processes and list process information and network information
 # History
