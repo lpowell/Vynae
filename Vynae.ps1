@@ -680,6 +680,143 @@ function PidSpawn($PPID){
     }
 }
 
+# File hash the process executable path and compare to known-bad files
+function PidHash($hash){
+    Write-Host "<----- Loading Hashes ----->" -ForegroundColor green
+    $HashList = Get-Content Hashes.txt
+    foreach($x in (get-ciminstance win32_process)){   
+        if($x.ExecutablePath){
+            $ProcessHash = Get-FileHash $x.ExecutablePath
+            foreach($h in $HashList){
+                if($ProcessHash.Hash -eq $h){
+                    Write-Host "<-----Hash Comparison----->" -ForegroundColor green
+                    Write-Host
+                    Write-Host "Alert -- Found match!" -ForegroundColor red
+                    Write-Host "Hash of " $x.ProcessName "with ID " $x.ProcessId "and ExecutablePath of " $x.ExecutablePath "matches hash " $h
+                    Write-Host
+                    Write-Host "<-----Process Information----->" -ForegroundColor green 
+                    Write-Host "Process Name: " -NoNewLine
+                    Write-Host $x.ProcessName -ForegroundColor green
+                    Write-Host "Process ID: " -NoNewLine
+                    Write-Host $x.ProcessId -ForegroundColor green
+                    Write-Host "Process PPID: " -NoNewLine
+                    Write-Host $x.ParentProcessID -ForegroundColor green
+                    Write-Host "Creation Date:" $x.CreationDate
+                    Write-Host "CSName:" $x.CSName
+                    if($x.ExecutablePath){
+                       Write-Host "Executable Path:" $x.ExecutablePath 
+                    }
+                    if($x.CommandLine){
+                        Write-Host "Command Line:" $x.CommandLine
+                    }
+                    Write-Host "Hash: " $ProcessHash.Hash
+                    Write-Host
+                    $NetInfo = (get-nettcpconnection | ? OwningProcess -eq $x.ProcessId)
+                    if($NetInfo.LocalAddress){
+                        Write-Host "<-----Net Information----->" -ForegroundColor green
+                        foreach($x in $NetInfo){
+                            Write-Host "State: " -NoNewLine
+                            Write-Host $x.State -ForegroundColor green
+                            if($x.LocalAddress | Select-String -Pattern "::"){
+                                if($x.LocalAddress -eq '::'){
+                                    Write-Host "Local IPv6 Address/Port:" -NoNewLine
+                                    Write-Host "any" -ForegroundColor red -NoNewLine
+                                    Write-Host ":" $x.LocalPort
+                                }else{
+                                    Write-Host "Local IPv6 Address/Port: " $x.LocalAddress ":" $x.LocalPort   
+                                }
+                                if($x.RemoteAddress -eq '::'){
+                                    Write-Host "Remote IPv6 Address/Port:" -NoNewLine
+                                    Write-Host "any" -ForegroundColor red -NoNewLine
+                                    Write-Host ":" $x.RemotePort
+                                }else{
+                                    Write-Host "Remote IPv6 Address/Port:" $x.RemoteAddress ":" $x.RemotePort
+                                }
+                            }else{
+                                if($x.LocalAddress -eq '0.0.0.0'){
+                                    Write-Host "Local IPv4 Address/Port:" -NoNewLine
+                                    Write-Host "any" -ForegroundColor red -NoNewLine
+                                    Write-Host ":" $x.LocalPort
+                                }else{
+                                    Write-Host "Local IPv4 Address/Port:" $x.LocalAddress ":" $x.LocalPort
+                                }
+                                if($x.RemoteAddress -eq '0.0.0.0'){
+                                    Write-Host "Remote IPv4 Address/Port:" -NoNewLine
+                                    Write-Host "any" -ForegroundColor red -NoNewLine
+                                    Write-Host ":" $x.RemotePort
+                                }else{
+                                    Write-Host "Remote IPv4 Address/Port:" $x.RemoteAddress ":" $x.RemotePort
+                                }
+                            }
+                            Write-Host
+                        }  
+                    }
+                }
+            }
+        }else{
+            Write-Host "Alert -- Could not find Path!" -ForegroundColor red
+            Write-Host "Could not find Executable Path for " $x.ProcessName " with ID " $x.ProcessID
+            Write-Host
+            Write-Host "<-----Process Information----->" -ForegroundColor green 
+            Write-Host "Process Name: " -NoNewLine
+            Write-Host $x.ProcessName -ForegroundColor green
+            Write-Host "Process ID: " -NoNewLine
+            Write-Host $x.ProcessId -ForegroundColor green
+            Write-Host "Process PPID: " -NoNewLine
+            Write-Host $x.ParentProcessID -ForegroundColor green
+            Write-Host "Creation Date:" $x.CreationDate
+            Write-Host "CSName:" $x.CSName
+            if($x.ExecutablePath){
+               Write-Host "Executable Path:" $x.ExecutablePath 
+            }
+            if($x.CommandLine){
+                Write-Host "Command Line:" $x.CommandLine
+            }
+            Write-Host
+            if($NetInfo.LocalAddress){
+                Write-Host "<-----Net Information----->" -ForegroundColor green
+                foreach($x in $NetInfo){
+                    Write-Host "State: " -NoNewLine
+                    Write-Host $x.State -ForegroundColor green
+                    if($x.LocalAddress | Select-String -Pattern "::"){
+                        if($x.LocalAddress -eq '::'){
+                            Write-Host "Local IPv6 Address/Port:" -NoNewLine
+                            Write-Host "any" -ForegroundColor red -NoNewLine
+                            Write-Host ":" $x.LocalPort
+                        }else{
+                            Write-Host "Local IPv6 Address/Port: " $x.LocalAddress ":" $x.LocalPort   
+                        }
+                        if($x.RemoteAddress -eq '::'){
+                            Write-Host "Remote IPv6 Address/Port:" -NoNewLine
+                            Write-Host "any" -ForegroundColor red -NoNewLine
+                            Write-Host ":" $x.RemotePort
+                        }else{
+                            Write-Host "Remote IPv6 Address/Port:" $x.RemoteAddress ":" $x.RemotePort
+                        }
+                    }else{
+                        if($x.LocalAddress -eq '0.0.0.0'){
+                            Write-Host "Local IPv4 Address/Port:" -NoNewLine
+                            Write-Host "any" -ForegroundColor red -NoNewLine
+                            Write-Host ":" $x.LocalPort
+                        }else{
+                            Write-Host "Local IPv4 Address/Port:" $x.LocalAddress ":" $x.LocalPort
+                        }
+                        if($x.RemoteAddress -eq '0.0.0.0'){
+                            Write-Host "Remote IPv4 Address/Port:" -NoNewLine
+                            Write-Host "any" -ForegroundColor red -NoNewLine
+                            Write-Host ":" $x.RemotePort
+                        }else{
+                            Write-Host "Remote IPv4 Address/Port:" $x.RemoteAddress ":" $x.RemotePort
+                        }
+                    }
+                    Write-Host
+                }  
+            }
+        }
+    }
+}
+
+
 # Redirect console stream to file
 function PidOut($output){
     $ErrorActionPreference="SilentlyContinue"
@@ -723,6 +860,10 @@ if($help){
     Write-Host "    -Output" -ForegroundColor green -NoNewLine
     Write-Host " Specifies the output path for the PowerShell transcript of the session"
     Write-Host
+    Write-Host "    -Hash" -ForegroundColor green -NoNewLine
+    Write-Host " Hashes each process executable and compares it to the list Hashes.txt"
+    Write-Host "            Alerts on matched hashes and processes without executable paths" 
+    Write-Host
     Write-Host "    -Help" -ForegroundColor green -NoNewLine
     Write-Host " Displays this menu"
     Write-Host
@@ -732,6 +873,10 @@ if($help){
 }
 # Add netonly to trace?
 # To add -NetStatus -Output -Readable
+if($Hash){
+    PidHash
+    exit
+}
 if($Trace){
     if($ID){
         try{
