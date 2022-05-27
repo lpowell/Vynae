@@ -5,7 +5,7 @@
 param($Id, $Name, [switch]$Trace, [switch]$NetOnly, [switch]$help, $PPID, $NetStatus, $output, [switch]$hash)
 function PidHunt{
     if($NetOnly){
-        foreach($x in (get-ciminstance win32_process)){  
+        foreach($x in (get-ciminstance CIM_Process)){  
             $NetInfo = (get-nettcpconnection | ? OwningProcess -eq $x.ProcessId) 
             if($NetInfo){
                 Write-Host "<-----Process Information----->" -ForegroundColor green 
@@ -67,7 +67,7 @@ function PidHunt{
         }
     }else{
         if($NetStatus){
-            foreach($x in (get-ciminstance win32_process)){  
+            foreach($x in (get-ciminstance CIM_Process)){  
                 $NetInfo = (get-nettcpconnection | ? OwningProcess -eq $x.ProcessId | ? State -eq $NetStatus) 
                 if($NetInfo){
                     Write-Host "<-----Process Information----->" -ForegroundColor green 
@@ -128,7 +128,7 @@ function PidHunt{
                 }
             }
         }else{
-            foreach($x in (get-ciminstance win32_process)){  
+            foreach($x in (get-ciminstance CIM_Process)){  
                 $NetInfo = (get-nettcpconnection | ? OwningProcess -eq $x.ProcessId) 
                 Write-Host "<-----Process Information----->" -ForegroundColor green 
                 Write-Host "Process Name: " -NoNewLine
@@ -188,14 +188,16 @@ function PidHunt{
             }
         }
     }  
-    $ErrorActionPreference="SilentlyContinue"
-    Stop-Transcript | out-null
-    $ErrorActionPreference="Continue"
+    try{
+        $ErrorActionPreference="SilentlyContinue"
+        Stop-Transcript | out-null
+        $ErrorActionPreference="Continue"
+        }catch{}
 }
 
 # Function given id
 function PidSnif($ID){
-    foreach($x in (get-ciminstance win32_process | ? ProcessId -eq $ID)){  
+    foreach($x in (get-ciminstance CIM_Process | ? ProcessId -eq $ID)){  
         $NetInfo = (get-nettcpconnection | ? OwningProcess -eq $x.ProcessId) 
         Write-Host "<-----Process Information----->" -ForegroundColor green 
         Write-Host "Process Name: " -NoNewLine
@@ -253,15 +255,17 @@ function PidSnif($ID){
             }  
         }
     }
-    $ErrorActionPreference="SilentlyContinue"
-    Stop-Transcript | out-null
-    $ErrorActionPreference="Continue"
+    try{
+        $ErrorActionPreference="SilentlyContinue"
+        Stop-Transcript | out-null
+        $ErrorActionPreference="Continue"
+        }catch{}
 }
 
 # Function given Name
 function PidName($Name){
     if($NetOnly){
-        foreach($x in (get-ciminstance win32_process | ? Name -match $Name)){  
+        foreach($x in (get-ciminstance CIM_Process | ? Name -match $Name)){  
             $NetInfo = (get-nettcpconnection | ? OwningProcess -eq $x.ProcessId)
             if($NetInfo){
                     Write-Host "<-----Process Information----->" -ForegroundColor green 
@@ -323,7 +327,7 @@ function PidName($Name){
         }
     }else{
         if($NetStatus){
-            foreach($x in (get-ciminstance win32_process | ? Name -match $Name)){
+            foreach($x in (get-ciminstance CIM_Process | ? Name -match $Name)){
                 $NetInfo = (get-nettcpconnection | ? OwningProcess -eq $x.ProcessId | ? State -eq $NetStatus) 
                 if($NetInfo){
                     Write-Host "<-----Process Information----->" -ForegroundColor green 
@@ -384,7 +388,7 @@ function PidName($Name){
                 }
             }
         }else{
-            foreach($x in (get-ciminstance win32_process | ? Name -match $Name)){  
+            foreach($x in (get-ciminstance CIM_Process | ? Name -match $Name)){  
                 $NetInfo = (get-nettcpconnection | ? OwningProcess -eq $x.ProcessId) 
                 Write-Host "<-----Process Information----->" -ForegroundColor green 
                 Write-Host "Process Name: " -NoNewLine
@@ -444,14 +448,16 @@ function PidName($Name){
             }
         }
     }
-    $ErrorActionPreference="SilentlyContinue"
-    Stop-Transcript | out-null
-    $ErrorActionPreference="Continue"
+    try{
+        $ErrorActionPreference="SilentlyContinue"
+        Stop-Transcript | out-null
+        $ErrorActionPreference="Continue"
+        }catch{}
 }
 # Trace PPID || Add NetOnly and NetStatus?
 function PidTrace($Flag){
     if($Flag -is [int]){
-        foreach($x in get-ciminstance win32_process | ? ProcessID -eq $Flag){
+        foreach($x in get-ciminstance CIM_Process | ? ProcessID -eq $Flag){
             Write-Host "<-----Process Information----->" -ForegroundColor green 
             Write-Host "Process Name: " -NoNewLine
             Write-Host $x.ProcessName -ForegroundColor green
@@ -468,14 +474,14 @@ function PidTrace($Flag){
                 Write-Host "Command Line:" $x.CommandLine
             }
             Write-Host
-            if((get-ciminstance win32_process | ? ProcessId -eq $x.ParentProcessID) -And [int]$x.ProcessId -ne 0){
+            if((get-ciminstance CIM_Process | ? ProcessId -eq $x.ParentProcessID) -And [int]$x.ProcessId -ne 0){
                 PidTrace([int]$x.ParentProcessID)
             }else{
                 Write-Host "<--Process cannot Be traced further-->" -ForegroundColor red
             }
         }
     }else{
-        foreach($x in get-ciminstance win32_process | ? ProcessName -match $Flag){
+        foreach($x in get-ciminstance CIM_Process | ? ProcessName -match $Flag){
             Write-Host "<-----Process Information----->" -ForegroundColor green 
             Write-Host "Process Name: " -NoNewLine
             Write-Host $x.ProcessName -ForegroundColor green
@@ -492,22 +498,24 @@ function PidTrace($Flag){
                 Write-Host "Command Line:" $x.CommandLine
             }
             Write-Host
-            if((get-ciminstance win32_process | ? ProcessId -eq $x.ParentProcessID) -And [int]$x.ProcessId -ne 0){
+            if((get-ciminstance CIM_Process | ? ProcessId -eq $x.ParentProcessID) -And [int]$x.ProcessId -ne 0){
                 PidTrace([int]$x.ParentProcessID)
             }else{
                 Write-Host "<--Process cannot Be traced further-->" -ForegroundColor red
             }
         }
     }
-    $ErrorActionPreference="SilentlyContinue"
-    Stop-Transcript | out-null
-    $ErrorActionPreference="Continue"
+    try{
+        $ErrorActionPreference="SilentlyContinue"
+        Stop-Transcript | out-null
+        $ErrorActionPreference="Continue"
+        }catch{}
 }
 
 # Search by PPID
 function PidSpawn($PPID){
     if($NetOnly){
-        foreach($x in (get-ciminstance win32_process | ? ParentProcessID -eq $PPID)){  
+        foreach($x in (get-ciminstance CIM_Process | ? ParentProcessID -eq $PPID)){  
             $NetInfo = (get-nettcpconnection | ? OwningProcess -eq $x.ProcessId) 
             if($NetInfo){
                 Write-Host "<-----Process Information----->" -ForegroundColor green 
@@ -569,7 +577,7 @@ function PidSpawn($PPID){
         }
     }else{
         if($NetStatus){
-            foreach($x in (get-ciminstance win32_process | ? ParentProcessID -eq $PPID)){  
+            foreach($x in (get-ciminstance CIM_Process | ? ParentProcessID -eq $PPID)){  
                 $NetInfo = (get-nettcpconnection | ? OwningProcess -eq $x.ProcessId | ? State -eq $NetStatus)
                 if($NetInfo){
                     Write-Host "<-----Process Information----->" -ForegroundColor green 
@@ -630,7 +638,7 @@ function PidSpawn($PPID){
                 }
             } 
         }else{
-            foreach($x in (get-ciminstance win32_process | ? ParentProcessID -eq $PPID)){  
+            foreach($x in (get-ciminstance CIM_Process | ? ParentProcessID -eq $PPID)){  
                 $NetInfo = (get-nettcpconnection | ? OwningProcess -eq $x.ProcessId) 
                 Write-Host "<-----Process Information----->" -ForegroundColor green 
                 Write-Host "Process Name: " -NoNewLine
@@ -690,20 +698,32 @@ function PidSpawn($PPID){
             }
         }
     }
-    $ErrorActionPreference="SilentlyContinue"
-    Stop-Transcript | out-null
-    $ErrorActionPreference="Continue"
+    try{
+        $ErrorActionPreference="SilentlyContinue"
+        Stop-Transcript | out-null
+        $ErrorActionPreference="Continue"
+        }catch{}
 }
 
 # File hash the process executable path and compare to known-bad files
+# Add -ID & -Name
 function PidHash($hash){
     Write-Host "<----- Loading Hashes ----->" -ForegroundColor green
     $HashList = Get-Content Hashes.txt
-    foreach($x in (get-ciminstance win32_process)){   
+    if($Name){
+        $GetProcess = get-ciminstance CIM_Process | ? Name -match $Name
+    }elseif($ID){
+        $GetProcess = get-ciminstance CIM_Process | ? ProcessId -eq $ID
+    }else{
+        $GetProcess = get-ciminstance CIM_Process
+    }
+    foreach($x in $GetProcess){   
         if($x.ExecutablePath){
             $ProcessHash = Get-FileHash $x.ExecutablePath
+            $FoundHash = $False
             foreach($h in $HashList){
                 if($ProcessHash.Hash -eq $h){
+                    $FoundHash = $True
                     Write-Host "<-----Hash Comparison----->" -ForegroundColor green
                     Write-Host
                     Write-Host "Alert -- Found match!" -ForegroundColor red
@@ -768,6 +788,65 @@ function PidHash($hash){
                     }
                 }
             }
+            if($FoundHash -eq $false){
+                Write-Host "No matches found!" -ForegroundColor green
+                Write-Host "<-----Process Information----->" -ForegroundColor green 
+                Write-Host "Process Name: " -NoNewLine
+                Write-Host $x.ProcessName -ForegroundColor green
+                Write-Host "Process ID: " -NoNewLine
+                Write-Host $x.ProcessId -ForegroundColor green
+                Write-Host "Process PPID: " -NoNewLine
+                Write-Host $x.ParentProcessID -ForegroundColor green
+                Write-Host "Creation Date:" $x.CreationDate
+                Write-Host "CSName:" $x.CSName
+                if($x.ExecutablePath){
+                   Write-Host "Executable Path:" $x.ExecutablePath 
+                }
+                if($x.CommandLine){
+                    Write-Host "Command Line:" $x.CommandLine
+                }
+                Write-Host "Hash: " $ProcessHash.Hash
+                Write-Host
+                if($NetInfo.LocalAddress){
+                    Write-Host "<-----Net Information----->" -ForegroundColor green
+                    foreach($x in $NetInfo){
+                        Write-Host "State: " -NoNewLine
+                        Write-Host $x.State -ForegroundColor green
+                        if($x.LocalAddress | Select-String -Pattern "::"){
+                            if($x.LocalAddress -eq '::'){
+                                Write-Host "Local IPv6 Address/Port:" -NoNewLine
+                                Write-Host "any" -ForegroundColor red -NoNewLine
+                                Write-Host ":" $x.LocalPort
+                            }else{
+                                Write-Host "Local IPv6 Address/Port: " $x.LocalAddress ":" $x.LocalPort   
+                            }
+                            if($x.RemoteAddress -eq '::'){
+                                Write-Host "Remote IPv6 Address/Port:" -NoNewLine
+                                Write-Host "any" -ForegroundColor red -NoNewLine
+                                Write-Host ":" $x.RemotePort
+                            }else{
+                                Write-Host "Remote IPv6 Address/Port:" $x.RemoteAddress ":" $x.RemotePort
+                            }
+                        }else{
+                            if($x.LocalAddress -eq '0.0.0.0'){
+                                Write-Host "Local IPv4 Address/Port:" -NoNewLine
+                                Write-Host "any" -ForegroundColor red -NoNewLine
+                                Write-Host ":" $x.LocalPort
+                            }else{
+                                Write-Host "Local IPv4 Address/Port:" $x.LocalAddress ":" $x.LocalPort
+                            }
+                            if($x.RemoteAddress -eq '0.0.0.0'){
+                                Write-Host "Remote IPv4 Address/Port:" -NoNewLine
+                                Write-Host "any" -ForegroundColor red -NoNewLine
+                                Write-Host ":" $x.RemotePort
+                            }else{
+                                Write-Host "Remote IPv4 Address/Port:" $x.RemoteAddress ":" $x.RemotePort
+                            }
+                        }
+                        Write-Host
+                    }  
+                }
+            }
         }else{
             Write-Host "Alert -- Could not find Path!" -ForegroundColor red
             Write-Host "Could not find Executable Path for " $x.ProcessName " with ID " $x.ProcessID
@@ -829,9 +908,11 @@ function PidHash($hash){
             }
         }
     }
-    $ErrorActionPreference="SilentlyContinue"
-    Stop-Transcript | out-null
-    $ErrorActionPreference="Continue"
+    try{
+        $ErrorActionPreference="SilentlyContinue"
+        Stop-Transcript | out-null
+        $ErrorActionPreference="Continue"
+        }catch{}
 }
 
 
@@ -880,7 +961,8 @@ if($help){
     Write-Host
     Write-Host "    -Hash" -ForegroundColor green -NoNewLine
     Write-Host " Hashes each process executable and compares it to the list Hashes.txt"
-    Write-Host "            Alerts on matched hashes and processes without executable paths" 
+    Write-Host "            Alerts on matched hashes and processes without executable paths"
+    Write-Host "            Can be used with -ID and -Name" 
     Write-Host
     Write-Host "    -Help" -ForegroundColor green -NoNewLine
     Write-Host " Displays this menu"
@@ -934,4 +1016,3 @@ if($Trace){
 }else{
     PidHunt
 }
-Stop-Transcript
