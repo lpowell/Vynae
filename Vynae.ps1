@@ -2,7 +2,7 @@
 # Goal is to cleanup the display of information and provide additional options for execution and data pull
 
 # Main function, runs given no parameters
-param($Id, $Name, [switch]$Trace, [switch]$NetOnly, [switch]$help, $PPID, $NetStatus, $output)
+param($Id, $Name, [switch]$Trace, [switch]$NetOnly, [switch]$help, $PPID, $NetStatus, $output, [switch]$hash)
 function PidHunt{
     if($NetOnly){
         foreach($x in (get-ciminstance win32_process)){  
@@ -188,6 +188,9 @@ function PidHunt{
             }
         }
     }  
+    $ErrorActionPreference="SilentlyContinue"
+    Stop-Transcript | out-null
+    $ErrorActionPreference="Continue"
 }
 
 # Function given id
@@ -250,6 +253,9 @@ function PidSnif($ID){
             }  
         }
     }
+    $ErrorActionPreference="SilentlyContinue"
+    Stop-Transcript | out-null
+    $ErrorActionPreference="Continue"
 }
 
 # Function given Name
@@ -438,6 +444,9 @@ function PidName($Name){
             }
         }
     }
+    $ErrorActionPreference="SilentlyContinue"
+    Stop-Transcript | out-null
+    $ErrorActionPreference="Continue"
 }
 # Trace PPID || Add NetOnly and NetStatus?
 function PidTrace($Flag){
@@ -490,6 +499,9 @@ function PidTrace($Flag){
             }
         }
     }
+    $ErrorActionPreference="SilentlyContinue"
+    Stop-Transcript | out-null
+    $ErrorActionPreference="Continue"
 }
 
 # Search by PPID
@@ -678,6 +690,9 @@ function PidSpawn($PPID){
             }
         }
     }
+    $ErrorActionPreference="SilentlyContinue"
+    Stop-Transcript | out-null
+    $ErrorActionPreference="Continue"
 }
 
 # File hash the process executable path and compare to known-bad files
@@ -814,6 +829,9 @@ function PidHash($hash){
             }
         }
     }
+    $ErrorActionPreference="SilentlyContinue"
+    Stop-Transcript | out-null
+    $ErrorActionPreference="Continue"
 }
 
 

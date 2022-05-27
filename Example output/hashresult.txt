@@ -1,0 +1,3538 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20220526230254
+Username: DESKTOP-CEQOOA2\Liam Powell
+RunAs User: DESKTOP-CEQOOA2\Liam Powell
+Configuration Name: 
+Machine: DESKTOP-CEQOOA2 (Microsoft Windows NT 10.0.19044.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+Process ID: 10320
+PSVersion: 5.1.19041.1682
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.1682
+BuildVersion: 10.0.19041.1682
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is hashresult.txt
+<----- Loading Hashes ----->
+Alert -- Could not find Path!
+Could not find Executable Path for  System Idle Process  with ID  0
+
+<-----Process Information----->
+Process Name:
+System Idle Process
+Process ID:
+0
+Process PPID:
+0
+Creation Date: 5/26/2022 3:53:57 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  System  with ID  4
+
+<-----Process Information----->
+Process Name:
+System
+Process ID:
+4
+Process PPID:
+0
+Creation Date: 5/26/2022 3:53:57 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  Secure System  with ID  136
+
+<-----Process Information----->
+Process Name:
+Secure System
+Process ID:
+136
+Process PPID:
+4
+Creation Date: 5/26/2022 3:53:55 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  Registry  with ID  228
+
+<-----Process Information----->
+Process Name:
+Registry
+Process ID:
+228
+Process PPID:
+4
+Creation Date: 5/26/2022 3:53:55 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  smss.exe  with ID  668
+
+<-----Process Information----->
+Process Name:
+smss.exe
+Process ID:
+668
+Process PPID:
+4
+Creation Date: 5/26/2022 3:53:57 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  csrss.exe  with ID  936
+
+<-----Process Information----->
+Process Name:
+csrss.exe
+Process ID:
+936
+Process PPID:
+912
+Creation Date: 5/26/2022 3:53:59 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  wininit.exe  with ID  1060
+
+<-----Process Information----->
+Process Name:
+wininit.exe
+Process ID:
+1060
+Process PPID:
+912
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  csrss.exe  with ID  1068
+
+<-----Process Information----->
+Process Name:
+csrss.exe
+Process ID:
+1068
+Process PPID:
+1052
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  services.exe  with ID  1132
+
+<-----Process Information----->
+Process Name:
+services.exe
+Process ID:
+1132
+Process PPID:
+1060
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  LsaIso.exe  with ID  1152
+
+<-----Process Information----->
+Process Name:
+LsaIso.exe
+Process ID:
+1152
+Process PPID:
+1060
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  lsass.exe  with ID  1160
+
+<-----Process Information----->
+Process Name:
+lsass.exe
+Process ID:
+1160
+Process PPID:
+1060
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  1284
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+1284
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  fontdrvhost.exe  with ID  1316
+
+<-----Process Information----->
+Process Name:
+fontdrvhost.exe
+Process ID:
+1316
+Process PPID:
+1060
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  WUDFHost.exe  with ID  1352
+
+<-----Process Information----->
+Process Name:
+WUDFHost.exe
+Process ID:
+1352
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  1404
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+1404
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  1460
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+1460
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  winlogon.exe  with ID  1532
+
+<-----Process Information----->
+Process Name:
+winlogon.exe
+Process ID:
+1532
+Process PPID:
+1052
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  fontdrvhost.exe  with ID  1584
+
+<-----Process Information----->
+Process Name:
+fontdrvhost.exe
+Process ID:
+1584
+Process PPID:
+1532
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  1704
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+1704
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  1720
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+1720
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  1728
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+1728
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  1744
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+1744
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  1764
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+1764
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  1920
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+1920
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  1960
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+1960
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  1972
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+1972
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  dwm.exe  with ID  2028
+
+<-----Process Information----->
+Process Name:
+dwm.exe
+Process ID:
+2028
+Process PPID:
+1532
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  1580
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+1580
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  2080
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+2080
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  2124
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+2124
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  2220
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+2220
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  2352
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+2352
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  2368
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+2368
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  2380
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+2380
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  2512
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+2512
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  2556
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+2556
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  dasHost.exe  with ID  2564
+
+<-----Process Information----->
+Process Name:
+dasHost.exe
+Process ID:
+2564
+Process PPID:
+2368
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  amdfendrsr.exe  with ID  2572
+
+<-----Process Information----->
+Process Name:
+amdfendrsr.exe
+Process ID:
+2572
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  atiesrxx.exe  with ID  2580
+
+<-----Process Information----->
+Process Name:
+atiesrxx.exe
+Process ID:
+2580
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  2688
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+2688
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  2704
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+2704
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  2964
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+2964
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  2972
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+2972
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  2984
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+2984
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  atieclxx.exe  with ID  3008
+
+<-----Process Information----->
+Process Name:
+atieclxx.exe
+Process ID:
+3008
+Process PPID:
+2580
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  2272
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+2272
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  Memory Compression  with ID  2660
+
+<-----Process Information----->
+Process Name:
+Memory Compression
+Process ID:
+2660
+Process PPID:
+4
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  2892
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+2892
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  2768
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+2768
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  3116
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+3116
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  3160
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+3160
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  3252
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+3252
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  3260
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+3260
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  3316
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+3316
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  3380
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+3380
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  3504
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+3504
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  3620
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+3620
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  3804
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+3804
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  WmiPrvSE.exe  with ID  3884
+
+<-----Process Information----->
+Process Name:
+WmiPrvSE.exe
+Process ID:
+3884
+Process PPID:
+1284
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  3916
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+3916
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  WmiPrvSE.exe  with ID  3968
+
+<-----Process Information----->
+Process Name:
+WmiPrvSE.exe
+Process ID:
+3968
+Process PPID:
+1284
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  3976
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+3976
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  3376
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+3376
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  3568
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+3568
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  4260
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+4260
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  4368
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+4368
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  spoolsv.exe  with ID  4452
+
+<-----Process Information----->
+Process Name:
+spoolsv.exe
+Process ID:
+4452
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  wlanext.exe  with ID  4568
+
+<-----Process Information----->
+Process Name:
+wlanext.exe
+Process ID:
+4568
+Process PPID:
+4260
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  4576
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+4576
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  conhost.exe  with ID  4632
+
+<-----Process Information----->
+Process Name:
+conhost.exe
+Process ID:
+4632
+Process PPID:
+4568
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  remoting_host.exe  with ID  4804
+
+<-----Process Information----->
+Process Name:
+remoting_host.exe
+Process ID:
+4804
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  4812
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+4812
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  4820
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+4820
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  4828
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+4828
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  4836
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+4836
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  4844
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+4844
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  4856
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+4856
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  vmware-authd.exe  with ID  4864
+
+<-----Process Information----->
+Process Name:
+vmware-authd.exe
+Process ID:
+4864
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  4872
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+4872
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  lghub_updater.exe  with ID  4888
+
+<-----Process Information----->
+Process Name:
+lghub_updater.exe
+Process ID:
+4888
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  pia-service.exe  with ID  4896
+
+<-----Process Information----->
+Process Name:
+pia-service.exe
+Process ID:
+4896
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  vmnetdhcp.exe  with ID  4904
+
+<-----Process Information----->
+Process Name:
+vmnetdhcp.exe
+Process ID:
+4904
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  vmnat.exe  with ID  4912
+
+<-----Process Information----->
+Process Name:
+vmnat.exe
+Process ID:
+4912
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  vmware-usbarbitrator64.exe  with ID  4956
+
+<-----Process Information----->
+Process Name:
+vmware-usbarbitrator64.exe
+Process ID:
+4956
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  MsMpEng.exe  with ID  4984
+
+<-----Process Information----->
+Process Name:
+MsMpEng.exe
+Process ID:
+4984
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  gamingservicesnet.exe  with ID  5144
+
+<-----Process Information----->
+Process Name:
+gamingservicesnet.exe
+Process ID:
+5144
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  5196
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+5196
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  5292
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+5292
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  gamingservices.exe  with ID  5300
+
+<-----Process Information----->
+Process Name:
+gamingservices.exe
+Process ID:
+5300
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  5324
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+5324
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  com.docker.service  with ID  5856
+
+<-----Process Information----->
+Process Name:
+com.docker.service
+Process ID:
+5856
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  remoting_host.exe  with ID  5936
+
+<-----Process Information----->
+Process Name:
+remoting_host.exe
+Process ID:
+5936
+Process PPID:
+4804
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  AUEPMaster.exe  with ID  7080
+
+<-----Process Information----->
+Process Name:
+AUEPMaster.exe
+Process ID:
+7080
+Process PPID:
+2220
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  7144
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+7144
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  6532
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+6532
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  ctfmon.exe  with ID  6572
+
+<-----Process Information----->
+Process Name:
+ctfmon.exe
+Process ID:
+6572
+Process PPID:
+6532
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  1264
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+1264
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:04 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  7212
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+7212
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:04 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  7388
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+7388
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:04 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  7484
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+7484
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:04 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  7556
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+7556
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:04 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  7684
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+7684
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:04 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  7940
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+7940
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:04 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  SearchIndexer.exe  with ID  9164
+
+<-----Process Information----->
+Process Name:
+SearchIndexer.exe
+Process ID:
+9164
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:04 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  10428
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+10428
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:07 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  10364
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+10364
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:07 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  10200
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+10200
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:07 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  9692
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+9692
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:07 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  9144
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+9144
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:11 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  SecurityHealthService.exe  with ID  14020
+
+<-----Process Information----->
+Process Name:
+SecurityHealthService.exe
+Process ID:
+14020
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:15 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  audiodg.exe  with ID  14140
+
+<-----Process Information----->
+Process Name:
+audiodg.exe
+Process ID:
+14140
+Process PPID:
+3976
+Creation Date: 5/26/2022 3:54:16 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  WmiPrvSE.exe  with ID  14388
+
+<-----Process Information----->
+Process Name:
+WmiPrvSE.exe
+Process ID:
+14388
+Process PPID:
+1284
+Creation Date: 5/26/2022 3:54:18 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  steamservice.exe  with ID  15096
+
+<-----Process Information----->
+Process Name:
+steamservice.exe
+Process ID:
+15096
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:20 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  16972
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+16972
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:26 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  17908
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+17908
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:27 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  CPUMetricsServer.exe  with ID  18316
+
+<-----Process Information----->
+Process Name:
+CPUMetricsServer.exe
+Process ID:
+18316
+Process PPID:
+2220
+Creation Date: 5/26/2022 3:54:28 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  AMDRSServ.exe  with ID  20228
+
+<-----Process Information----->
+Process Name:
+AMDRSServ.exe
+Process ID:
+20228
+Process PPID:
+20108
+Creation Date: 5/26/2022 3:54:32 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  amdow.exe  with ID  19564
+
+<-----Process Information----->
+Process Name:
+amdow.exe
+Process ID:
+19564
+Process PPID:
+20228
+Creation Date: 5/26/2022 3:54:34 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  AUEPDU.exe  with ID  20096
+
+<-----Process Information----->
+Process Name:
+AUEPDU.exe
+Process ID:
+20096
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:56:04 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  SgrmBroker.exe  with ID  3892
+
+<-----Process Information----->
+Process Name:
+SgrmBroker.exe
+Process ID:
+3892
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:56:05 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  5068
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+5068
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:56:05 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  8756
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+8756
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:56:05 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  17252
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+17252
+Process PPID:
+1132
+Creation Date: 5/26/2022 4:05:22 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  vmcompute.exe  with ID  13224
+
+<-----Process Information----->
+Process Name:
+vmcompute.exe
+Process ID:
+13224
+Process PPID:
+1132
+Creation Date: 5/26/2022 4:05:28 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  vmwp.exe  with ID  17020
+
+<-----Process Information----->
+Process Name:
+vmwp.exe
+Process ID:
+17020
+Process PPID:
+13224
+Creation Date: 5/26/2022 4:05:28 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  vmmem  with ID  7776
+
+<-----Process Information----->
+Process Name:
+vmmem
+Process ID:
+7776
+Process PPID:
+17020
+Creation Date: 5/26/2022 4:05:28 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  19740
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+19740
+Process PPID:
+1132
+Creation Date: 5/26/2022 4:13:28 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  MpCopyAccelerator.exe  with ID  4120
+
+<-----Process Information----->
+Process Name:
+MpCopyAccelerator.exe
+Process ID:
+4120
+Process PPID:
+4984
+Creation Date: 5/26/2022 4:19:58 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  NisSrv.exe  with ID  18920
+
+<-----Process Information----->
+Process Name:
+NisSrv.exe
+Process ID:
+18920
+Process PPID:
+1132
+Creation Date: 5/26/2022 4:24:05 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  10340
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+10340
+Process PPID:
+1132
+Creation Date: 5/26/2022 7:07:04 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  4528
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+4528
+Process PPID:
+1132
+Creation Date: 5/26/2022 8:01:43 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  8636
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+8636
+Process PPID:
+1132
+Creation Date: 5/26/2022 8:01:55 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  Taskmgr.exe  with ID  4492
+
+<-----Process Information----->
+Process Name:
+Taskmgr.exe
+Process ID:
+4492
+Process PPID:
+10184
+Creation Date: 5/26/2022 10:11:19 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  3420
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+3420
+Process PPID:
+1132
+Creation Date: 5/26/2022 10:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+PS C:\Users\Liam Powell\Documents\GitHub\pidhunter> stop-transaction
+stop-transaction : The term 'stop-transaction' is not recognized as the name of a cmdlet, function, script file, or 
+operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try 
+again.
+At line:1 char:1
++ stop-transaction
++ ~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (stop-transaction:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+stop-transaction : The term 'stop-transaction' is not recognized as the name of a cmdlet, function, script file, or
+operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try
+again.
+At line:1 char:1
++ stop-transaction
++ ~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (stop-transaction:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+PS C:\Users\Liam Powell\Documents\GitHub\pidhunter> stop-transcript
+**********************
+Windows PowerShell transcript end
+End time: 20220526230356
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20220526230530
+Username: DESKTOP-CEQOOA2\Liam Powell
+RunAs User: DESKTOP-CEQOOA2\Liam Powell
+Configuration Name: 
+Machine: DESKTOP-CEQOOA2 (Microsoft Windows NT 10.0.19044.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+Process ID: 10320
+PSVersion: 5.1.19041.1682
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.1682
+BuildVersion: 10.0.19041.1682
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is hashresult.txt
+<----- Loading Hashes ----->
+Alert -- Could not find Path!
+Could not find Executable Path for  System Idle Process  with ID  0
+
+<-----Process Information----->
+Process Name:
+System Idle Process
+Process ID:
+0
+Process PPID:
+0
+Creation Date: 5/26/2022 3:53:57 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  System  with ID  4
+
+<-----Process Information----->
+Process Name:
+System
+Process ID:
+4
+Process PPID:
+0
+Creation Date: 5/26/2022 3:53:57 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  Secure System  with ID  136
+
+<-----Process Information----->
+Process Name:
+Secure System
+Process ID:
+136
+Process PPID:
+4
+Creation Date: 5/26/2022 3:53:55 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  Registry  with ID  228
+
+<-----Process Information----->
+Process Name:
+Registry
+Process ID:
+228
+Process PPID:
+4
+Creation Date: 5/26/2022 3:53:55 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  smss.exe  with ID  668
+
+<-----Process Information----->
+Process Name:
+smss.exe
+Process ID:
+668
+Process PPID:
+4
+Creation Date: 5/26/2022 3:53:57 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  csrss.exe  with ID  936
+
+<-----Process Information----->
+Process Name:
+csrss.exe
+Process ID:
+936
+Process PPID:
+912
+Creation Date: 5/26/2022 3:53:59 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  wininit.exe  with ID  1060
+
+<-----Process Information----->
+Process Name:
+wininit.exe
+Process ID:
+1060
+Process PPID:
+912
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  csrss.exe  with ID  1068
+
+<-----Process Information----->
+Process Name:
+csrss.exe
+Process ID:
+1068
+Process PPID:
+1052
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  services.exe  with ID  1132
+
+<-----Process Information----->
+Process Name:
+services.exe
+Process ID:
+1132
+Process PPID:
+1060
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  LsaIso.exe  with ID  1152
+
+<-----Process Information----->
+Process Name:
+LsaIso.exe
+Process ID:
+1152
+Process PPID:
+1060
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  lsass.exe  with ID  1160
+
+<-----Process Information----->
+Process Name:
+lsass.exe
+Process ID:
+1160
+Process PPID:
+1060
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  1284
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+1284
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  fontdrvhost.exe  with ID  1316
+
+<-----Process Information----->
+Process Name:
+fontdrvhost.exe
+Process ID:
+1316
+Process PPID:
+1060
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  WUDFHost.exe  with ID  1352
+
+<-----Process Information----->
+Process Name:
+WUDFHost.exe
+Process ID:
+1352
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  1404
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+1404
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  1460
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+1460
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  winlogon.exe  with ID  1532
+
+<-----Process Information----->
+Process Name:
+winlogon.exe
+Process ID:
+1532
+Process PPID:
+1052
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  fontdrvhost.exe  with ID  1584
+
+<-----Process Information----->
+Process Name:
+fontdrvhost.exe
+Process ID:
+1584
+Process PPID:
+1532
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  1704
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+1704
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  1720
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+1720
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  1728
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+1728
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  1744
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+1744
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  1764
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+1764
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  1920
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+1920
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  1960
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+1960
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  1972
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+1972
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  dwm.exe  with ID  2028
+
+<-----Process Information----->
+Process Name:
+dwm.exe
+Process ID:
+2028
+Process PPID:
+1532
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  1580
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+1580
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  2080
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+2080
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  2124
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+2124
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  2220
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+2220
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  2352
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+2352
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  2368
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+2368
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  2380
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+2380
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  2512
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+2512
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  2556
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+2556
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  dasHost.exe  with ID  2564
+
+<-----Process Information----->
+Process Name:
+dasHost.exe
+Process ID:
+2564
+Process PPID:
+2368
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  amdfendrsr.exe  with ID  2572
+
+<-----Process Information----->
+Process Name:
+amdfendrsr.exe
+Process ID:
+2572
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  atiesrxx.exe  with ID  2580
+
+<-----Process Information----->
+Process Name:
+atiesrxx.exe
+Process ID:
+2580
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  2688
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+2688
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  2704
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+2704
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  2964
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+2964
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  2972
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+2972
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  2984
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+2984
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  atieclxx.exe  with ID  3008
+
+<-----Process Information----->
+Process Name:
+atieclxx.exe
+Process ID:
+3008
+Process PPID:
+2580
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  2272
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+2272
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  Memory Compression  with ID  2660
+
+<-----Process Information----->
+Process Name:
+Memory Compression
+Process ID:
+2660
+Process PPID:
+4
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  2892
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+2892
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  2768
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+2768
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  3116
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+3116
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  3160
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+3160
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  3252
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+3252
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  3260
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+3260
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  3316
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+3316
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  3380
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+3380
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  3504
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+3504
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  3620
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+3620
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:02 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  3804
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+3804
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  WmiPrvSE.exe  with ID  3884
+
+<-----Process Information----->
+Process Name:
+WmiPrvSE.exe
+Process ID:
+3884
+Process PPID:
+1284
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  3916
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+3916
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  WmiPrvSE.exe  with ID  3968
+
+<-----Process Information----->
+Process Name:
+WmiPrvSE.exe
+Process ID:
+3968
+Process PPID:
+1284
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  3976
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+3976
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  3376
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+3376
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  3568
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+3568
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  4260
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+4260
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  4368
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+4368
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  spoolsv.exe  with ID  4452
+
+<-----Process Information----->
+Process Name:
+spoolsv.exe
+Process ID:
+4452
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  wlanext.exe  with ID  4568
+
+<-----Process Information----->
+Process Name:
+wlanext.exe
+Process ID:
+4568
+Process PPID:
+4260
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  4576
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+4576
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  conhost.exe  with ID  4632
+
+<-----Process Information----->
+Process Name:
+conhost.exe
+Process ID:
+4632
+Process PPID:
+4568
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  remoting_host.exe  with ID  4804
+
+<-----Process Information----->
+Process Name:
+remoting_host.exe
+Process ID:
+4804
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  4812
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+4812
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  4820
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+4820
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  4828
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+4828
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  4836
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+4836
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  4844
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+4844
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  4856
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+4856
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  vmware-authd.exe  with ID  4864
+
+<-----Process Information----->
+Process Name:
+vmware-authd.exe
+Process ID:
+4864
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  4872
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+4872
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  lghub_updater.exe  with ID  4888
+
+<-----Process Information----->
+Process Name:
+lghub_updater.exe
+Process ID:
+4888
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  pia-service.exe  with ID  4896
+
+<-----Process Information----->
+Process Name:
+pia-service.exe
+Process ID:
+4896
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  vmnetdhcp.exe  with ID  4904
+
+<-----Process Information----->
+Process Name:
+vmnetdhcp.exe
+Process ID:
+4904
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  vmnat.exe  with ID  4912
+
+<-----Process Information----->
+Process Name:
+vmnat.exe
+Process ID:
+4912
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  vmware-usbarbitrator64.exe  with ID  4956
+
+<-----Process Information----->
+Process Name:
+vmware-usbarbitrator64.exe
+Process ID:
+4956
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  MsMpEng.exe  with ID  4984
+
+<-----Process Information----->
+Process Name:
+MsMpEng.exe
+Process ID:
+4984
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  gamingservicesnet.exe  with ID  5144
+
+<-----Process Information----->
+Process Name:
+gamingservicesnet.exe
+Process ID:
+5144
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  5196
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+5196
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  5292
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+5292
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  gamingservices.exe  with ID  5300
+
+<-----Process Information----->
+Process Name:
+gamingservices.exe
+Process ID:
+5300
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  5324
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+5324
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  com.docker.service  with ID  5856
+
+<-----Process Information----->
+Process Name:
+com.docker.service
+Process ID:
+5856
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  remoting_host.exe  with ID  5936
+
+<-----Process Information----->
+Process Name:
+remoting_host.exe
+Process ID:
+5936
+Process PPID:
+4804
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  AUEPMaster.exe  with ID  7080
+
+<-----Process Information----->
+Process Name:
+AUEPMaster.exe
+Process ID:
+7080
+Process PPID:
+2220
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  7144
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+7144
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  6532
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+6532
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  ctfmon.exe  with ID  6572
+
+<-----Process Information----->
+Process Name:
+ctfmon.exe
+Process ID:
+6572
+Process PPID:
+6532
+Creation Date: 5/26/2022 3:54:03 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  1264
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+1264
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:04 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  7212
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+7212
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:04 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  7388
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+7388
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:04 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  7484
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+7484
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:04 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  7556
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+7556
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:04 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  7684
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+7684
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:04 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  7940
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+7940
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:04 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  SearchIndexer.exe  with ID  9164
+
+<-----Process Information----->
+Process Name:
+SearchIndexer.exe
+Process ID:
+9164
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:04 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  10428
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+10428
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:07 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  10364
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+10364
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:07 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  10200
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+10200
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:07 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  9692
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+9692
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:07 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  9144
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+9144
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:11 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  SecurityHealthService.exe  with ID  14020
+
+<-----Process Information----->
+Process Name:
+SecurityHealthService.exe
+Process ID:
+14020
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:15 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  audiodg.exe  with ID  14140
+
+<-----Process Information----->
+Process Name:
+audiodg.exe
+Process ID:
+14140
+Process PPID:
+3976
+Creation Date: 5/26/2022 3:54:16 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  WmiPrvSE.exe  with ID  14388
+
+<-----Process Information----->
+Process Name:
+WmiPrvSE.exe
+Process ID:
+14388
+Process PPID:
+1284
+Creation Date: 5/26/2022 3:54:18 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  steamservice.exe  with ID  15096
+
+<-----Process Information----->
+Process Name:
+steamservice.exe
+Process ID:
+15096
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:20 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  16972
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+16972
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:26 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  17908
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+17908
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:54:27 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  CPUMetricsServer.exe  with ID  18316
+
+<-----Process Information----->
+Process Name:
+CPUMetricsServer.exe
+Process ID:
+18316
+Process PPID:
+2220
+Creation Date: 5/26/2022 3:54:28 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  AMDRSServ.exe  with ID  20228
+
+<-----Process Information----->
+Process Name:
+AMDRSServ.exe
+Process ID:
+20228
+Process PPID:
+20108
+Creation Date: 5/26/2022 3:54:32 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  amdow.exe  with ID  19564
+
+<-----Process Information----->
+Process Name:
+amdow.exe
+Process ID:
+19564
+Process PPID:
+20228
+Creation Date: 5/26/2022 3:54:34 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  AUEPDU.exe  with ID  20096
+
+<-----Process Information----->
+Process Name:
+AUEPDU.exe
+Process ID:
+20096
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:56:04 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  SgrmBroker.exe  with ID  3892
+
+<-----Process Information----->
+Process Name:
+SgrmBroker.exe
+Process ID:
+3892
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:56:05 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  5068
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+5068
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:56:05 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  8756
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+8756
+Process PPID:
+1132
+Creation Date: 5/26/2022 3:56:05 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  17252
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+17252
+Process PPID:
+1132
+Creation Date: 5/26/2022 4:05:22 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  vmcompute.exe  with ID  13224
+
+<-----Process Information----->
+Process Name:
+vmcompute.exe
+Process ID:
+13224
+Process PPID:
+1132
+Creation Date: 5/26/2022 4:05:28 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  vmwp.exe  with ID  17020
+
+<-----Process Information----->
+Process Name:
+vmwp.exe
+Process ID:
+17020
+Process PPID:
+13224
+Creation Date: 5/26/2022 4:05:28 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  vmmem  with ID  7776
+
+<-----Process Information----->
+Process Name:
+vmmem
+Process ID:
+7776
+Process PPID:
+17020
+Creation Date: 5/26/2022 4:05:28 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  19740
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+19740
+Process PPID:
+1132
+Creation Date: 5/26/2022 4:13:28 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  MpCopyAccelerator.exe  with ID  4120
+
+<-----Process Information----->
+Process Name:
+MpCopyAccelerator.exe
+Process ID:
+4120
+Process PPID:
+4984
+Creation Date: 5/26/2022 4:19:58 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  NisSrv.exe  with ID  18920
+
+<-----Process Information----->
+Process Name:
+NisSrv.exe
+Process ID:
+18920
+Process PPID:
+1132
+Creation Date: 5/26/2022 4:24:05 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  10340
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+10340
+Process PPID:
+1132
+Creation Date: 5/26/2022 7:07:04 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  4528
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+4528
+Process PPID:
+1132
+Creation Date: 5/26/2022 8:01:43 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  svchost.exe  with ID  8636
+
+<-----Process Information----->
+Process Name:
+svchost.exe
+Process ID:
+8636
+Process PPID:
+1132
+Creation Date: 5/26/2022 8:01:55 PM
+CSName: DESKTOP-CEQOOA2
+
+Alert -- Could not find Path!
+Could not find Executable Path for  Taskmgr.exe  with ID  4492
+
+<-----Process Information----->
+Process Name:
+Taskmgr.exe
+Process ID:
+4492
+Process PPID:
+10184
+Creation Date: 5/26/2022 10:11:19 PM
+CSName: DESKTOP-CEQOOA2
+
+**********************
+Windows PowerShell transcript end
+End time: 20220526230559
+**********************
