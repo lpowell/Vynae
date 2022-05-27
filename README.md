@@ -24,6 +24,9 @@ Usage
             Can be used with -Name, -PPID, or defaults
             
     -Output Creates a PowerShell transcript at the specified path
+    
+    -Hash Hashes the process executables and compares them to the list of hashes in Hashes.txt
+          Alerts on processes without executables and matched hashes
 
     Running with no parameters will scan all processes and list process information and network information
 # History
