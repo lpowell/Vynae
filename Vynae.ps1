@@ -440,15 +440,62 @@ function ProcessHashing(){
 
 function ServiceInformation(){
     if($Name){
-        try{
-            $Services = get-ciminstance Win32_Service | ? Name -match $Name | ? State -eq $ServiceState
-            if($ServiceState -eq $null){
-                throw
+        if($NetOnly -or $NetStatus){
+            try{
+                $Services = get-ciminstance Win32_Service | ? Name -match $Name | ? State -eq $ServiceState
+                if($ServiceState -eq $null){
+                    throw
+                }
+                }catch{
+                    $Services = get-ciminstance Win32_Service | ? Name -match $Name
+                }
+            foreach($x in $Services){
+                try{
+                    $TestNetConnection = get-nettcpconnection | ? OwningProcess -eq $Services.ProcessID | ? State -eq $NetStatus
+                    if($NetStatus -eq $null){
+                        throw
+                    }
+                    }catch{
+                        $TestNetConnection = get-nettcpconnection | ? OwningProcess -eq $Services.ProcessID
+                    }
+                if($TestNetConnection){
+                    foreach($y in $x){
+                        $Process = get-ciminstance Win32_Process | ? ProcessID -eq $x.ProcessID
+                        Write-Host "<-----Service Information----->" -ForegroundColor green 
+                        Write-Host "Service Name: " -NoNewLine
+                        Write-Host $x.Name -ForegroundColor green
+                        Write-Host "Service Status: " -NoNewLine
+                        Write-Host $x.Status -ForegroundColor green
+                        Write-Host "Service State: " -NoNewLine
+                        Write-Host $x.State -ForegroundColor green
+                        Write-Host "Process ID: " -NoNewLine
+                        Write-Host $x.ProcessId -ForegroundColor green
+                        Write-Host "Process PPID: " -NoNewLine
+                        Write-Host $x.ParentProcessID -ForegroundColor green
+                        Write-Host "Creation Class:" $x.CreationClassName
+                        Write-Host "System Name:" $x.SystemName
+                        if($x.PathName){
+                           Write-Host "Executable Path:" $x.PathName 
+                        }
+                        if($x.InstallDate){
+                            Write-Host "Install Date:" $x.InstallDate
+                        }
+                        Write-Host "Description: " $x.Description
+                        Write-Host
+                        NetworkInformation($x.ProcessID)
+                    }
+                }
             }
-            }catch{
-                $Services = get-ciminstance Win32_Service | ? Name -match $Name
-            }
-        foreach($x in $Services){
+        }else{
+            try{
+                $Services = get-ciminstance Win32_Service | ? Name -match $Name | ? State -eq $ServiceState
+                if($ServiceState -eq $null){
+                    throw
+                }
+                }catch{
+                    $Services = get-ciminstance Win32_Service | ? Name -match $Name
+                }
+            foreach($x in $Services){
             $Process = get-ciminstance Win32_Process | ? ProcessID -eq $x.ProcessID
             Write-Host "<-----Service Information----->" -ForegroundColor green 
             Write-Host "Service Name: " -NoNewLine
@@ -472,7 +519,55 @@ function ServiceInformation(){
             Write-Host "Description: " $x.Description
             Write-Host
             NetworkInformation($x.ProcessID)
+            }
         }
+    }else{
+        if($NetOnly -or $NetStatus){
+            try{
+                $Services = get-ciminstance Win32_Service | ? State -eq $ServiceState
+                if($ServiceState -eq $null){
+                    throw
+                }
+                }catch{
+                    $Services = get-ciminstance Win32_Service 
+                }
+            foreach($x in $Services){
+                try{
+                    $TestNetConnection = get-nettcpconnection | ? OwningProcess -eq $x.ProcessID | ? State -eq $NetStatus
+                    if($NetStatus -eq $null){
+                        throw
+                    }
+                    }catch{
+                        $TestNetConnection = get-nettcpconnection | ? OwningProcess -eq $x.ProcessID
+                    }
+                if($TestNetConnection){
+                    foreach($y in $x){
+                        $Process = get-ciminstance Win32_Process | ? ProcessID -eq $x.ProcessID
+                        Write-Host "<-----Service Information----->" -ForegroundColor green 
+                        Write-Host "Service Name: " -NoNewLine
+                        Write-Host $x.Name -ForegroundColor green
+                        Write-Host "Service Status: " -NoNewLine
+                        Write-Host $x.Status -ForegroundColor green
+                        Write-Host "Service State: " -NoNewLine
+                        Write-Host $x.State -ForegroundColor green
+                        Write-Host "Process ID: " -NoNewLine
+                        Write-Host $x.ProcessId -ForegroundColor green
+                        Write-Host "Process PPID: " -NoNewLine
+                        Write-Host $x.ParentProcessID -ForegroundColor green
+                        Write-Host "Creation Class:" $x.CreationClassName
+                        Write-Host "System Name:" $x.SystemName
+                        if($x.PathName){
+                           Write-Host "Executable Path:" $x.PathName 
+                        }
+                        if($x.InstallDate){
+                            Write-Host "Install Date:" $x.InstallDate
+                        }
+                        Write-Host "Description: " $x.Description
+                        Write-Host
+                        NetworkInformation($x.ProcessID)
+                    }
+                }
+            }
         }else{
             try{
                 $Services = get-ciminstance Win32_Service | ? State -eq $ServiceState
@@ -508,7 +603,9 @@ function ServiceInformation(){
                 NetworkInformation($x.ProcessID)
             }
         }
+    }                   
 }
+
 
 function VynaeHelp($Action){
     Write-Host
