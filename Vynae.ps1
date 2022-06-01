@@ -59,7 +59,7 @@ function ProcessInformation() {
             foreach ($x in (get-ciminstance CIM_Process | ? Name -match $Name)) {
                 try {
                     $TestNetConnection = get-nettcpconnection | ? OwningProcess -eq $x.ProcessID | ? State -eq $NetStatus
-                    if ($NetStatus -eq $null) {
+                    if ($null -eq $NetStatus) {
                         throw
                     }
                     }catch{
@@ -83,7 +83,7 @@ function ProcessInformation() {
                     foreach($x in (get-ciminstance CIM_Process | ? ParentProcessID -eq $ParentID)){
                         try{
                             $TestNetConnection = get-nettcpconnection | ? OwningProcess -eq $x.ProcessID | ? State -eq $NetStatus
-                            if($NetStatus -eq $null){
+                            if($null -eq $NetStatus){
                                 throw
                             }
                             }catch{
@@ -103,7 +103,7 @@ function ProcessInformation() {
                     foreach($x in (get-ciminstance CIM_Process)){
                         try{
                             $TestNetConnection = get-nettcpconnection | ? OwningProcess -eq $x.ProcessID | ? State -eq $NetStatus
-                            if($NetStatus -eq $null){
+                            if($null -eq $NetStatus){
                                 throw
                             }
                             }catch{
@@ -249,7 +249,7 @@ function ProcessHashing(){
     Write-Host "<----- Loading Hashes ----->" -ForegroundColor $GoodColor
     Try{
         $HashList = Get-Content Hashes.txt
-        if($HashList -eq $null){
+        if ($null -eq $HashList) {
             throw
         }
         Write-Host
@@ -302,7 +302,7 @@ function ServiceInformation() {
         if ($NetOnly -or $NetStatus) {
             try {
                 $Services = get-ciminstance Win32_Service | ? Name -match $Name | ? State -eq $ServiceState
-                if ($ServiceState -eq $null) {
+                if ($null -eq $ServiceState) {
                     throw
                 }
             }
@@ -312,7 +312,7 @@ function ServiceInformation() {
             foreach ($x in $Services) {
                 try {
                     $TestNetConnection = get-nettcpconnection | ? OwningProcess -eq $Services.ProcessID | ? State -eq $NetStatus
-                    if ($NetStatus -eq $null) {
+                    if ($null -eq $NetStatus) {
                         throw
                     }
                 }
@@ -351,7 +351,7 @@ function ServiceInformation() {
         else {
             try {
                 $Services = get-ciminstance Win32_Service | ? Name -match $Name | ? State -eq $ServiceState
-                if ($ServiceState -eq $null) {
+                if ($null -eq $ServiceState) {
                     throw
                 }
             }
@@ -389,7 +389,7 @@ function ServiceInformation() {
         if ($NetOnly -or $NetStatus) {
             try {
                 $Services = get-ciminstance Win32_Service | ? State -eq $ServiceState
-                if ($ServiceState -eq $null) {
+                if ($null -eq $ServiceState) {
                     throw
                 }
             }
@@ -399,7 +399,7 @@ function ServiceInformation() {
             foreach ($x in $Services) {
                 try {
                     $TestNetConnection = get-nettcpconnection | ? OwningProcess -eq $x.ProcessID | ? State -eq $NetStatus
-                    if ($NetStatus -eq $null) {
+                    if ($null -eq $NetStatus) {
                         throw
                     }
                 }
@@ -438,7 +438,7 @@ function ServiceInformation() {
         else {
             try {
                 $Services = get-ciminstance Win32_Service | ? State -eq $ServiceState
-                if ($ServiceState -eq $null) {
+                if ($null -eq $ServiceState) {
                     throw
                 }
             }
