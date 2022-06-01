@@ -22,7 +22,14 @@ function ProcessInformation(){
     if($Name){
         if($NetOnly -or $NetStatus){
             foreach($x in (get-ciminstance CIM_Process | ? Name -match $Name)){
-                $TestNetConnection = get-nettcpconnection | ? OwningProcess -eq $x.ProcessID 
+                try{
+                    $TestNetConnection = get-nettcpconnection | ? OwningProcess -eq $x.ProcessID | ? State -eq $NetStatus
+                    if($NetStatus -eq $null){
+                        throw
+                    }
+                    }catch{
+                        $TestNetConnection = get-nettcpconnection | ? OwningProcess -eq $x.ProcessID 
+                    }
                 if($TestNetConnection){
                     Write-Host "<-----Process Information----->" -ForegroundColor green 
                     Write-Host "Process Name: " -NoNewLine
@@ -89,6 +96,9 @@ function ProcessInformation(){
                     foreach($x in (get-ciminstance CIM_Process | ? ParentProcessID -eq $ParentID)){
                         try{
                             $TestNetConnection = get-nettcpconnection | ? OwningProcess -eq $x.ProcessID | ? State -eq $NetStatus
+                            if($NetStatus -eq $null){
+                                throw
+                            }
                             }catch{
                                 $TestNetConnection = get-nettcpconnection | ? OwningProcess -eq $x.ProcessID 
                             }
@@ -138,6 +148,9 @@ function ProcessInformation(){
                     foreach($x in (get-ciminstance CIM_Process)){
                         try{
                             $TestNetConnection = get-nettcpconnection | ? OwningProcess -eq $x.ProcessID | ? State -eq $NetStatus
+                            if($NetStatus -eq $null){
+                                throw
+                            }
                             }catch{
                                 $TestNetConnection = get-nettcpconnection | ? OwningProcess -eq $x.ProcessID 
                             }
@@ -186,7 +199,10 @@ function ProcessInformation(){
 }
 
 function NetworkInformation($ProcessID){
-    if(get-nettcpconnection | ? OwningProcess -eq $ProcessID | ? State -eq $NetStatus -And -Not $NetSupress){
+    if($NetSupress){
+        return
+    }
+    if(get-nettcpconnection | ? OwningProcess -eq $ProcessID | ? State -eq $NetStatus){
         Write-Host "<-----Net Information----->" -ForegroundColor green
         foreach($x in (get-nettcpconnection | ? OwningProcess -eq $ProcessID | ? State -eq $NetStatus)){
             Write-Host "State: " -NoNewLine
@@ -224,7 +240,7 @@ function NetworkInformation($ProcessID){
             }
             Write-Host
         }  
-        }elseif(get-nettcpconnection | ? OwningProcess -eq $ProcessID -And -Not $NetSupress){
+        }elseif(get-nettcpconnection | ? OwningProcess -eq $ProcessID){
             Write-Host "<-----Net Information----->" -ForegroundColor green
             foreach($x in (get-nettcpconnection | ? OwningProcess -eq $ProcessID)){
                 Write-Host "State: " -NoNewLine
@@ -471,10 +487,10 @@ function ServiceInformation(){
                 Write-Host "<-----Service Information----->" -ForegroundColor green 
                 Write-Host "Service Name: " -NoNewLine
                 Write-Host $x.Name -ForegroundColor green
-                Write-Host "Service Started: " -NoNewLine
-                Write-Host $x.Started -ForegroundColor green
                 Write-Host "Service Status: " -NoNewLine
                 Write-Host $x.Status -ForegroundColor green
+                Write-Host "Service State: " -NoNewLine
+                Write-Host $x.State -ForegroundColor green
                 Write-Host "Process ID: " -NoNewLine
                 Write-Host $x.ProcessId -ForegroundColor green
                 Write-Host "Process PPID: " -NoNewLine
