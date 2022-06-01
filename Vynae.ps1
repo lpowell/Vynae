@@ -426,6 +426,9 @@ function ServiceInformation(){
     if($Name){
         try{
             $Services = get-ciminstance Win32_Service | ? Name -match $Name | ? State -eq $ServiceState
+            if($ServiceState -eq $null){
+                throw
+            }
             }catch{
                 $Services = get-ciminstance Win32_Service | ? Name -match $Name
             }
@@ -457,6 +460,9 @@ function ServiceInformation(){
         }else{
             try{
                 $Services = get-ciminstance Win32_Service | ? State -eq $ServiceState
+                if($ServiceState -eq $null){
+                    throw
+                }
                 }catch{
                     $Services = get-ciminstance Win32_Service
                 }
