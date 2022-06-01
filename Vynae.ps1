@@ -617,8 +617,8 @@ function VynaeHelp($Action){
     Write-Host "    -ID" -ForegroundColor green -NoNewLine
     Write-Host " Used to pull information on a specific ProcessID"
     Write-Host
-    Write-Host "    -PPID" -ForegroundColor green -NoNewLine
-    Write-Host " Used to list all processes spawned by the given PPID"
+    Write-Host "    -ParentID" -ForegroundColor green -NoNewLine
+    Write-Host " Used to list all processes spawned by the given ParentID"
     Write-Host
     Write-Host "    -Name" -ForegroundColor green -NoNewLine
     Write-Host " Used to pull information on ALL processes whose names match the value"
