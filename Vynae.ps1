@@ -11,15 +11,55 @@ function GlobalOptions(){
             $global:GoodColor = 'green'
             $global:BadColor = 'red'
         }
+    }
+
+function ProcessPrint($Process){
+    $ActiveTime = New-TimeSpan -Start $Process.CreationDate -End $DateTime
+    if($Date -And $Process.CreationDate.Date  -notcontains $Date){
+        return
+    }
+    if($Time -in 0..24 -And $Process.CreationDate.Hour -ne [int]$Time){
+        return
+    }
+    if($TimeActive -in 0..24 -And $ActiveTime.Hours -ne [int]$TimeActive){
+        return
+    }
+    $ParentPath = get-ciminstance CIM_Process | ? ProcessID -eq $Process.ParentProcessID 
+    Write-Host "<-----Process Information----->" -ForegroundColor $GoodColor 
+    Write-Host "Process Name: " -NoNewLine
+    Write-Host $Process.ProcessName -ForegroundColor $GoodColor
+    Write-Host "Process ID: " -NoNewLine
+    Write-Host $Process.ProcessId -ForegroundColor $GoodColor
+    Write-Host "PPID Name: " -NoNewLine
+    Write-Host $ParentPath.Name -ForegroundColor $GoodColor
+    Write-Host "Process PPID: " -NoNewLine
+    Write-Host $Process.ParentProcessID -ForegroundColor $GoodColor
+    if($ParentPath.ExecutablePath){
+       Write-Host "PPID Path:" $ParentPath.ExecutablePath 
+    } 
+    if($Process.CreationDate){
+        Write-Host "Creation Date:" $Process.CreationDate
+        Write-Host "Active for: " $ActiveTime.Hours 'Hours' $ActiveTime.Minutes 'Minutes'
+    }
+    Write-Host "CSName:" $Process.CSName
+    if($Process.ExecutablePath){
+       Write-Host "Executable Path:" $Process.ExecutablePath 
+    }
+    if($Process.CommandLine){
+        Write-Host "Command Line:" $Process.CommandLine
+    }
+    Write-Host
+    NetworkInformation($Process.ProcessID)
 }
+
 # if name elif id else default && use params for name and id
-function ProcessInformation(){
-    if($Name){
-        if($NetOnly -or $NetStatus){
-            foreach($x in (get-ciminstance CIM_Process | ? Name -match $Name)){
-                try{
+function ProcessInformation() {
+    if ($Name) {
+        if ($NetOnly -or $NetStatus) {
+            foreach ($x in (get-ciminstance CIM_Process | ? Name -match $Name)) {
+                try {
                     $TestNetConnection = get-nettcpconnection | ? OwningProcess -eq $x.ProcessID | ? State -eq $NetStatus
-                    if($NetStatus -eq $null){
+                    if ($NetStatus -eq $null) {
                         throw
                     }
                     }catch{
@@ -81,121 +121,128 @@ function ProcessInformation(){
             }
 }
 
-function ProcessPrint($Process){
-    $ActiveTime = New-TimeSpan -Start $Process.CreationDate -End $DateTime
-    if($Date -And $Process.CreationDate.Date  -notcontains $Date){
+function NetworkInformation($ProcessID) {
+    if ($NetSupress) {
         return
     }
-    if($Time -in 0..24 -And $Process.CreationDate.Hour -ne [int]$Time){
-        return
-    }
-    if($TimeActive -in 0..24 -And $ActiveTime.Hours -ne [int]$TimeActive){
-        return
-    }
-    $ParentPath = get-ciminstance CIM_Process | ? ProcessID -eq $Process.ParentProcessID 
-    Write-Host "<-----Process Information----->" -ForegroundColor $GoodColor 
-    Write-Host "Process Name: " -NoNewLine
-    Write-Host $Process.ProcessName -ForegroundColor $GoodColor
-    Write-Host "Process ID: " -NoNewLine
-    Write-Host $Process.ProcessId -ForegroundColor $GoodColor
-    Write-Host "PPID Name: " -NoNewLine
-    Write-Host $ParentPath.Name -ForegroundColor $GoodColor
-    Write-Host "Process PPID: " -NoNewLine
-    Write-Host $Process.ParentProcessID -ForegroundColor $GoodColor
-    if($ParentPath.ExecutablePath){
-       Write-Host "PPID Path:" $ParentPath.ExecutablePath 
-    } 
-    if($Process.CreationDate){
-        Write-Host "Creation Date:" $Process.CreationDate
-        Write-Host "Active for: " $ActiveTime.Hours 'Hours' $ActiveTime.Minutes 'Minutes'
-    }
-    Write-Host "CSName:" $Process.CSName
-    if($Process.ExecutablePath){
-       Write-Host "Executable Path:" $Process.ExecutablePath 
-    }
-    if($Process.CommandLine){
-        Write-Host "Command Line:" $Process.CommandLine
-    }
-    Write-Host
-    NetworkInformation($Process.ProcessID)
-}
-
-function NetworkInformation($ProcessID){
-    if($NetSupress){
-        return
-    }
-    if(get-nettcpconnection | ? OwningProcess -eq $ProcessID | ? State -eq $NetStatus){
-        Write-Host "<-----Net Information----->" -ForegroundColor $GoodColor
-        foreach($x in (get-nettcpconnection | ? OwningProcess -eq $ProcessID | ? State -eq $NetStatus)){
-            NetworkPrint($x)
+    if (get-nettcpconnection | ? OwningProcess -eq $ProcessID | ? State -eq $NetStatus) {
+        Write-Host "<-----Net Information----->" -ForegroundColor green
+        foreach ($x in (get-nettcpconnection | ? OwningProcess -eq $ProcessID | ? State -eq $NetStatus)) {
+            Write-Host "State: " -NoNewLine
+            Write-Host $x.State -ForegroundColor green
+            if ($x.LocalAddress | Select-String -Pattern "::") {
+                if ($x.LocalAddress -eq '::') {
+                    Write-Host "Local IPv6 Address/Port:" -NoNewLine
+                    Write-Host "any" -ForegroundColor red -NoNewLine
+                    Write-Host ":" $x.LocalPort
+                }
+                else {
+                    Write-Host "Local IPv6 Address/Port: " $x.LocalAddress ":" $x.LocalPort   
+                }
+                if ($x.RemoteAddress -eq '::') {
+                    Write-Host "Remote IPv6 Address/Port:" -NoNewLine
+                    Write-Host "any" -ForegroundColor red -NoNewLine
+                    Write-Host ":" $x.RemotePort
+                }
+                else {
+                    Write-Host "Remote IPv6 Address/Port:" $x.RemoteAddress ":" $x.RemotePort
+                }
+            }
+            else {
+                if ($x.LocalAddress -eq '0.0.0.0') {
+                    Write-Host "Local IPv4 Address/Port:" -NoNewLine
+                    Write-Host "any" -ForegroundColor red -NoNewLine
+                    Write-Host ":" $x.LocalPort
+                }
+                else {
+                    Write-Host "Local IPv4 Address/Port:" $x.LocalAddress ":" $x.LocalPort
+                }
+                if ($x.RemoteAddress -eq '0.0.0.0') {
+                    Write-Host "Remote IPv4 Address/Port:" -NoNewLine
+                    Write-Host "any" -ForegroundColor red -NoNewLine
+                    Write-Host ":" $x.RemotePort
+                }
+                else {
+                    Write-Host "Remote IPv4 Address/Port:" $x.RemoteAddress ":" $x.RemotePort
+                }
+            }
+            Write-Host
         }  
-        }elseif(get-nettcpconnection | ? OwningProcess -eq $ProcessID){
-            Write-Host "<-----Net Information----->" -ForegroundColor $GoodColor
-            foreach($x in (get-nettcpconnection | ? OwningProcess -eq $ProcessID)){
-            NetworkPrint($x)  
-        }
     }
+    elseif (get-nettcpconnection | ? OwningProcess -eq $ProcessID) {
+        Write-Host "<-----Net Information----->" -ForegroundColor green
+        foreach ($x in (get-nettcpconnection | ? OwningProcess -eq $ProcessID)) {
+            Write-Host "State: " -NoNewLine
+            Write-Host $x.State -ForegroundColor green
+            if ($x.LocalAddress | Select-String -Pattern "::") {
+                if ($x.LocalAddress -eq '::') {
+                    Write-Host "Local IPv6 Address/Port:" -NoNewLine
+                    Write-Host "any" -ForegroundColor red -NoNewLine
+                    Write-Host ":" $x.LocalPort
+                }
+                else {
+                    Write-Host "Local IPv6 Address/Port: " $x.LocalAddress ":" $x.LocalPort   
+                }
+                if ($x.RemoteAddress -eq '::') {
+                    Write-Host "Remote IPv6 Address/Port:" -NoNewLine
+                    Write-Host "any" -ForegroundColor red -NoNewLine
+                    Write-Host ":" $x.RemotePort
+                }
+                else {
+                    Write-Host "Remote IPv6 Address/Port:" $x.RemoteAddress ":" $x.RemotePort
+                }
+            }
+            else {
+                if ($x.LocalAddress -eq '0.0.0.0') {
+                    Write-Host "Local IPv4 Address/Port:" -NoNewLine
+                    Write-Host "any" -ForegroundColor red -NoNewLine
+                    Write-Host ":" $x.LocalPort
+                }
+                else {
+                    Write-Host "Local IPv4 Address/Port:" $x.LocalAddress ":" $x.LocalPort
+                }
+                if ($x.RemoteAddress -eq '0.0.0.0') {
+                    Write-Host "Remote IPv4 Address/Port:" -NoNewLine
+                    Write-Host "any" -ForegroundColor red -NoNewLine
+                    Write-Host ":" $x.RemotePort
+                }
+                else {
+                    Write-Host "Remote IPv4 Address/Port:" $x.RemoteAddress ":" $x.RemotePort
+                }
+            }
+            Write-Host
+        }  
+    }
+
 }
 
-function NetworkPrint($Conn){
-    Write-Host "State: " -NoNewLine
-    Write-Host $Conn.State -ForegroundColor $GoodColor
-    if($Conn.LocalAddress | Select-String -Pattern "::"){
-        if($Conn.LocalAddress -eq '::'){
-            Write-Host "Local IPv6 Address/Port:" -NoNewLine
-            Write-Host "any" -ForegroundColor $BadColor -NoNewLine
-            Write-Host ":" $Conn.LocalPort
-        }else{
-            Write-Host "Local IPv6 Address/Port: " $Conn.LocalAddress ":" $Conn.LocalPort   
-        }
-        if($Conn.RemoteAddress -eq '::'){
-            Write-Host "Remote IPv6 Address/Port:" -NoNewLine
-            Write-Host "any" -ForegroundColor $BadColor -NoNewLine
-            Write-Host ":" $Conn.RemotePort
-        }else{
-            Write-Host "Remote IPv6 Address/Port:" $Conn.RemoteAddress ":" $Conn.RemotePort
-        }
-    }else{
-        if($Conn.LocalAddress -eq '0.0.0.0'){
-            Write-Host "Local IPv4 Address/Port:" -NoNewLine
-            Write-Host "any" -ForegroundColor $BadColor -NoNewLine
-            Write-Host ":" $Conn.LocalPort
-        }else{
-            Write-Host "Local IPv4 Address/Port:" $Conn.LocalAddress ":" $Conn.LocalPort
-        }
-        if($Conn.RemoteAddress -eq '0.0.0.0'){
-            Write-Host "Remote IPv4 Address/Port:" -NoNewLine
-            Write-Host "any" -ForegroundColor $BadColor -NoNewLine
-            Write-Host ":" $Conn.RemotePort
-        }else{
-            Write-Host "Remote IPv4 Address/Port:" $Conn.RemoteAddress ":" $Conn.RemotePort
-        }
-    }
-    Write-Host
-}
-
-function ParentProcessTracing(){
-    if($ID){
-        foreach($x in get-ciminstance CIM_Process | ? ProcessID -eq $ID){
+function ParentProcessTracing() {
+    if ($ID) {
+        foreach ($x in get-ciminstance CIM_Process | ? ProcessID -eq $ID) {
             ProcessPrint($x)
-            ProcessTrace($x)
+            if ((get-ciminstance CIM_Process | ? ProcessId -eq $x.ParentProcessID) -And [int]$x.ProcessId -ne 0) {
+                $ID = $x.ParentProcessID
+                ParentProcessTracing($ID)
+            }
+            else {
+                Write-Host "<--Process cannot Be traced further-->" -ForegroundColor red
+            }
         }
-    }elseif($Name){
-        foreach($x in get-ciminstance CIM_Process | ? ProcessName -match $Name){
+    }
+    elseif ($Name) {
+        foreach ($x in get-ciminstance CIM_Process | ? ProcessName -match $Name) {
             ProcessPrint($x)
-            ProcessTrace($x)
+            if ((get-ciminstance CIM_Process | ? ProcessId -eq $x.ParentProcessID) -And [int]$x.ProcessId -ne 0) {
+                $ID = $x.ParentProcessID
+                ParentProcessTracing($ID)
+            }
+            else {
+                Write-Host "<--Process cannot Be traced further-->" -ForegroundColor red
+            }
         }
     }
 }
 
-function ProcessTrace($Process){
-    if((get-ciminstance CIM_Process | ? ProcessId -eq $Process.ParentProcessID) -And [int]$Process.ProcessId -ne 0){
-        $ID = $Process.ParentProcessID
-        ParentProcessTracing
-    }else{
-        Write-Host "<--Process cannot Be traced further-->" -ForegroundColor $BadColor
-    }
-}
 
 function ProcessHashing(){
     $HashedArray=@()
@@ -231,150 +278,196 @@ function ProcessHashing(){
                 $HashedArray += $ProcessHash.hash
                 if($FoundHash -eq $false -And -Not $AlertOnly){
                     Write-Host "No matches found!" -ForegroundColor $GoodColor
-                    Write-Host "<-----Process Information----->" -ForegroundColor $GoodColor 
-                    Write-Host "Process Name: " -NoNewLine
-                    Write-Host $x.ProcessName -ForegroundColor $GoodColor
-                    Write-Host "Process ID: " -NoNewLine
-                    Write-Host $x.ProcessId -ForegroundColor $GoodColor
-                    Write-Host "Process PPID: " -NoNewLine
-                    Write-Host $x.ParentProcessID -ForegroundColor $GoodColor
-                    Write-Host "Creation Date:" $x.CreationDate
-                    Write-Host "CSName:" $x.CSName
-                    if($x.ExecutablePath){
-                       Write-Host "Executable Path:" $x.ExecutablePath 
-                    }
-                    if($x.CommandLine){
-                        Write-Host "Command Line:" $x.CommandLine
-                    }
-                    Write-Host "Hash: " $ProcessHash.Hash
-                    Write-Host
+                    ProcessPrint($x)
                 }elseif($FoundHash -eq $True){
                     Write-Host "<-----Hash Comparison----->" -ForegroundColor $GoodColor
                     Write-Host
                     Write-Host "Alert -- Found match!" -ForegroundColor $BadColor
                     Write-Host "Hash of " $x.ProcessName "with ID " $x.ProcessId "and ExecutablePath of " $x.ExecutablePath "matches hash " $h
                     Write-Host
-                    Write-Host "<-----Process Information----->" -ForegroundColor $GoodColor 
-                    Write-Host "Process Name: " -NoNewLine
-                    Write-Host $x.ProcessName -ForegroundColor $GoodColor
-                    Write-Host "Process ID: " -NoNewLine
-                    Write-Host $x.ProcessId -ForegroundColor $GoodColor
-                    Write-Host "Process PPID: " -NoNewLine
-                    Write-Host $x.ParentProcessID -ForegroundColor $GoodColor
-                    Write-Host "Creation Date:" $x.CreationDate
-                    Write-Host "CSName:" $x.CSName
-                    if($x.ExecutablePath){
-                       Write-Host "Executable Path:" $x.ExecutablePath 
-                    }
-                    if($x.CommandLine){
-                        Write-Host "Command Line:" $x.CommandLine
-                    }
-                    Write-Host "Hash: " $ProcessHash.Hash
-                    Write-Host
+                    ProcessPrint($x)
                 }
             }elseif(-Not $NoPath){
                 Write-Host "Alert -- Could not find Path!" -ForegroundColor $BadColor
                 Write-Host "Could not find Executable Path for " $x.ProcessName " with ID " $x.ProcessID
                 Write-Host
-                Write-Host "<-----Process Information----->" -ForegroundColor $GoodColor 
-                Write-Host "Process Name: " -NoNewLine
-                Write-Host $x.ProcessName -ForegroundColor $GoodColor
-                Write-Host "Process ID: " -NoNewLine
-                Write-Host $x.ProcessId -ForegroundColor $GoodColor
-                Write-Host "Process PPID: " -NoNewLine
-                Write-Host $x.ParentProcessID -ForegroundColor $GoodColor
-                Write-Host "Creation Date:" $x.CreationDate
-                Write-Host "CSName:" $x.CSName
-                if($x.ExecutablePath){
-                   Write-Host "Executable Path:" $x.ExecutablePath 
-                }
-                if($x.CommandLine){
-                    Write-Host "Command Line:" $x.CommandLine
-                }
-                Write-Host
+                ProcessPrint($x)
             }
         }  
     }
 }
 
-function ServiceInformation(){
-    if($Name){
-        if($NetOnly -or $NetStatus){
-            try{
+function ServiceInformation() {
+    if ($Name) {
+        if ($NetOnly -or $NetStatus) {
+            try {
                 $Services = get-ciminstance Win32_Service | ? Name -match $Name | ? State -eq $ServiceState
-                if($ServiceState -eq $null){
+                if ($ServiceState -eq $null) {
                     throw
                 }
-                }catch{
-                    $Services = get-ciminstance Win32_Service | ? Name -match $Name
-                }
-            foreach($x in $Services){
-                try{
+            }
+            catch {
+                $Services = get-ciminstance Win32_Service | ? Name -match $Name
+            }
+            foreach ($x in $Services) {
+                try {
                     $TestNetConnection = get-nettcpconnection | ? OwningProcess -eq $Services.ProcessID | ? State -eq $NetStatus
-                    if($NetStatus -eq $null){
+                    if ($NetStatus -eq $null) {
                         throw
                     }
-                    }catch{
-                        $TestNetConnection = get-nettcpconnection | ? OwningProcess -eq $Services.ProcessID
-                    }
-                if($TestNetConnection){
-                    foreach($y in $x){
-                        ServicePrint($x)
+                }
+                catch {
+                    $TestNetConnection = get-nettcpconnection | ? OwningProcess -eq $Services.ProcessID
+                }
+                if ($TestNetConnection) {
+                    foreach ($y in $x) {
+                        $Process = get-ciminstance Win32_Process | ? ProcessID -eq $x.ProcessID
+                        Write-Host "<-----Service Information----->" -ForegroundColor green 
+                        Write-Host "Service Name: " -NoNewLine
+                        Write-Host $x.Name -ForegroundColor green
+                        Write-Host "Service Status: " -NoNewLine
+                        Write-Host $x.Status -ForegroundColor green
+                        Write-Host "Service State: " -NoNewLine
+                        Write-Host $x.State -ForegroundColor green
+                        Write-Host "Process ID: " -NoNewLine
+                        Write-Host $x.ProcessId -ForegroundColor green
+                        Write-Host "Process PPID: " -NoNewLine
+                        Write-Host $x.ParentProcessID -ForegroundColor green
+                        Write-Host "Creation Class:" $x.CreationClassName
+                        Write-Host "System Name:" $x.SystemName
+                        if ($x.PathName) {
+                            Write-Host "Executable Path:" $x.PathName 
+                        }
+                        if ($x.InstallDate) {
+                            Write-Host "Install Date:" $x.InstallDate
+                        }
+                        Write-Host "Description: " $x.Description
+                        Write-Host
                         NetworkInformation($x.ProcessID)
                     }
                 }
-            }
-        }else{
-            try{
-                $Services = get-ciminstance Win32_Service | ? Name -match $Name | ? State -eq $ServiceState
-                if($ServiceState -eq $null){
-                    throw
-                }
-                }catch{
-                    $Services = get-ciminstance Win32_Service | ? Name -match $Name
-                }
-            foreach($x in $Services){
-            ServicePrint($x)
-            NetworkInformation($x.ProcessID)
             }
         }
-    }else{
-        if($NetOnly -or $NetStatus){
-            try{
-                $Services = get-ciminstance Win32_Service | ? State -eq $ServiceState
-                if($ServiceState -eq $null){
+        else {
+            try {
+                $Services = get-ciminstance Win32_Service | ? Name -match $Name | ? State -eq $ServiceState
+                if ($ServiceState -eq $null) {
                     throw
                 }
-                }catch{
-                    $Services = get-ciminstance Win32_Service 
+            }
+            catch {
+                $Services = get-ciminstance Win32_Service | ? Name -match $Name
+            }
+            foreach ($x in $Services) {
+                $Process = get-ciminstance Win32_Process | ? ProcessID -eq $x.ProcessID
+                Write-Host "<-----Service Information----->" -ForegroundColor green 
+                Write-Host "Service Name: " -NoNewLine
+                Write-Host $x.Name -ForegroundColor green
+                Write-Host "Service Status: " -NoNewLine
+                Write-Host $x.Status -ForegroundColor green
+                Write-Host "Service State: " -NoNewLine
+                Write-Host $x.State -ForegroundColor green
+                Write-Host "Process ID: " -NoNewLine
+                Write-Host $x.ProcessId -ForegroundColor green
+                Write-Host "Process PPID: " -NoNewLine
+                Write-Host $x.ParentProcessID -ForegroundColor green
+                Write-Host "Creation Class:" $x.CreationClassName
+                Write-Host "System Name:" $x.SystemName
+                if ($x.PathName) {
+                    Write-Host "Executable Path:" $x.PathName 
                 }
-            foreach($x in $Services){
-                try{
+                if ($x.InstallDate) {
+                    Write-Host "Install Date:" $x.InstallDate
+                }
+                Write-Host "Description: " $x.Description
+                Write-Host
+                NetworkInformation($x.ProcessID)
+            }
+        }
+    }
+    else {
+        if ($NetOnly -or $NetStatus) {
+            try {
+                $Services = get-ciminstance Win32_Service | ? State -eq $ServiceState
+                if ($ServiceState -eq $null) {
+                    throw
+                }
+            }
+            catch {
+                $Services = get-ciminstance Win32_Service 
+            }
+            foreach ($x in $Services) {
+                try {
                     $TestNetConnection = get-nettcpconnection | ? OwningProcess -eq $x.ProcessID | ? State -eq $NetStatus
-                    if($NetStatus -eq $null){
+                    if ($NetStatus -eq $null) {
                         throw
                     }
-                    }catch{
-                        $TestNetConnection = get-nettcpconnection | ? OwningProcess -eq $x.ProcessID
-                    }
-                if($TestNetConnection){
-                    foreach($y in $x){
-                        ServicePrint($x)
+                }
+                catch {
+                    $TestNetConnection = get-nettcpconnection | ? OwningProcess -eq $x.ProcessID
+                }
+                if ($TestNetConnection) {
+                    foreach ($y in $x) {
+                        $Process = get-ciminstance Win32_Process | ? ProcessID -eq $x.ProcessID
+                        Write-Host "<-----Service Information----->" -ForegroundColor green 
+                        Write-Host "Service Name: " -NoNewLine
+                        Write-Host $x.Name -ForegroundColor green
+                        Write-Host "Service Status: " -NoNewLine
+                        Write-Host $x.Status -ForegroundColor green
+                        Write-Host "Service State: " -NoNewLine
+                        Write-Host $x.State -ForegroundColor green
+                        Write-Host "Process ID: " -NoNewLine
+                        Write-Host $x.ProcessId -ForegroundColor green
+                        Write-Host "Process PPID: " -NoNewLine
+                        Write-Host $x.ParentProcessID -ForegroundColor green
+                        Write-Host "Creation Class:" $x.CreationClassName
+                        Write-Host "System Name:" $x.SystemName
+                        if ($x.PathName) {
+                            Write-Host "Executable Path:" $x.PathName 
+                        }
+                        if ($x.InstallDate) {
+                            Write-Host "Install Date:" $x.InstallDate
+                        }
+                        Write-Host "Description: " $x.Description
+                        Write-Host
                         NetworkInformation($x.ProcessID)
                     }
                 }
             }
-        }else{
-            try{
+        }
+        else {
+            try {
                 $Services = get-ciminstance Win32_Service | ? State -eq $ServiceState
-                if($ServiceState -eq $null){
+                if ($ServiceState -eq $null) {
                     throw
                 }
-                }catch{
-                    $Services = get-ciminstance Win32_Service
+            }
+            catch {
+                $Services = get-ciminstance Win32_Service
+            }
+            foreach ($x in $Services) {
+                $Process = get-ciminstance Win32_Process | ? ProcessID -eq $x.ProcessID
+                Write-Host "<-----Service Information----->" -ForegroundColor green 
+                Write-Host "Service Name: " -NoNewLine
+                Write-Host $x.Name -ForegroundColor green
+                Write-Host "Service Status: " -NoNewLine
+                Write-Host $x.Status -ForegroundColor green
+                Write-Host "Service State: " -NoNewLine
+                Write-Host $x.State -ForegroundColor green
+                Write-Host "Process ID: " -NoNewLine
+                Write-Host $x.ProcessId -ForegroundColor green
+                Write-Host "Process PPID: " -NoNewLine
+                Write-Host $x.ParentProcessID -ForegroundColor green
+                Write-Host "Creation Class:" $x.CreationClassName
+                Write-Host "System Name:" $x.SystemName
+                if ($x.PathName) {
+                    Write-Host "Executable Path:" $x.PathName 
                 }
-            foreach($x in $Services){
-                ServicePrint($x)
+                if ($x.InstallDate) {
+                    Write-Host "Install Date:" $x.InstallDate
+                }
+                Write-Host "Description: " $x.Description
+                Write-Host
                 NetworkInformation($x.ProcessID)
             }
         }
@@ -406,7 +499,7 @@ function ServicePrint($Service){
     Write-Host
 }
 
-function VynaeHelp($Action){
+function VynaeHelp($Action) {
     Write-Host
     Write-Host "Vynae"
     Write-Host "A PowerShell tool for extracting process Information"
@@ -463,21 +556,21 @@ GlobalOptions
 if($Output){
     start-transcript -path $output -append
 }
-if($Service){
+if ($Service) {
     ServiceInformation
 }
-if($Trace){
+if ($Trace) {
     ParentProcessTracing
 }
-if($Hash){
+if ($Hash) {
     ProcessHashing
 }
-if($Help){
+if ($Help) {
     VynaeHelp
 }
-if(-Not $Trace -and -Not $Hash -And -Not $Help -And -Not $Service){
+if (-Not $Trace -and -Not $Hash -And -Not $Help -And -Not $Service) {
     ProcessInformation  
 }
-if($Output){
+if ($Output) {
     stop-transcript
 }
