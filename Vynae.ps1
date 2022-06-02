@@ -98,7 +98,7 @@ function NetworkPrint($Conn) {
 function ProcessTrace($Process) {
     if ((Get-CimInstance CIM_Process | Where-Object ProcessId -EQ $Process.ParentProcessID) -And [int]$Process.ProcessId -ne 0) {
         $ID = $Process.ParentProcessID
-        ParentProcessTracing
+        ParentProcessTracing($ID)
     }
     else {
         Write-Host "<--Process cannot Be traced further-->" -ForegroundColor $BadColor
@@ -201,7 +201,7 @@ function NetworkInformation($ProcessID) {
     }
 }
 
-function ParentProcessTracing() {
+function ParentProcessTracing($ID) {
     if ($ID) {
         foreach ($x in Get-CimInstance CIM_Process | Where-Object ProcessID -EQ $ID) {
             ProcessPrint($x)
