@@ -277,29 +277,7 @@ function ServiceInformation() {
                 }
                 if ($TestNetConnection) {
                     foreach ($y in $x) {
-                        $Process = get-ciminstance Win32_Process | ? ProcessID -eq $x.ProcessID
-                        Write-Host "<-----Service Information----->" -ForegroundColor green 
-                        Write-Host "Service Name: " -NoNewLine
-                        Write-Host $x.Name -ForegroundColor green
-                        Write-Host "Service Status: " -NoNewLine
-                        Write-Host $x.Status -ForegroundColor green
-                        Write-Host "Service State: " -NoNewLine
-                        Write-Host $x.State -ForegroundColor green
-                        Write-Host "Process ID: " -NoNewLine
-                        Write-Host $x.ProcessId -ForegroundColor green
-                        Write-Host "Process PPID: " -NoNewLine
-                        Write-Host $x.ParentProcessID -ForegroundColor green
-                        Write-Host "Creation Class:" $x.CreationClassName
-                        Write-Host "System Name:" $x.SystemName
-                        if ($x.PathName) {
-                            Write-Host "Executable Path:" $x.PathName 
-                        }
-                        if ($x.InstallDate) {
-                            Write-Host "Install Date:" $x.InstallDate
-                        }
-                        Write-Host "Description: " $x.Description
-                        Write-Host
-                        NetworkInformation($x.ProcessID)
+                        ServicePrint($x)
                     }
                 }
             }
@@ -315,29 +293,7 @@ function ServiceInformation() {
                 $Services = get-ciminstance Win32_Service | ? Name -match $Name
             }
             foreach ($x in $Services) {
-                $Process = get-ciminstance Win32_Process | ? ProcessID -eq $x.ProcessID
-                Write-Host "<-----Service Information----->" -ForegroundColor green 
-                Write-Host "Service Name: " -NoNewLine
-                Write-Host $x.Name -ForegroundColor green
-                Write-Host "Service Status: " -NoNewLine
-                Write-Host $x.Status -ForegroundColor green
-                Write-Host "Service State: " -NoNewLine
-                Write-Host $x.State -ForegroundColor green
-                Write-Host "Process ID: " -NoNewLine
-                Write-Host $x.ProcessId -ForegroundColor green
-                Write-Host "Process PPID: " -NoNewLine
-                Write-Host $x.ParentProcessID -ForegroundColor green
-                Write-Host "Creation Class:" $x.CreationClassName
-                Write-Host "System Name:" $x.SystemName
-                if ($x.PathName) {
-                    Write-Host "Executable Path:" $x.PathName 
-                }
-                if ($x.InstallDate) {
-                    Write-Host "Install Date:" $x.InstallDate
-                }
-                Write-Host "Description: " $x.Description
-                Write-Host
-                NetworkInformation($x.ProcessID)
+                ServicePrint($x)
             }
         }
     }
@@ -364,29 +320,7 @@ function ServiceInformation() {
                 }
                 if ($TestNetConnection) {
                     foreach ($y in $x) {
-                        $Process = get-ciminstance Win32_Process | ? ProcessID -eq $x.ProcessID
-                        Write-Host "<-----Service Information----->" -ForegroundColor green 
-                        Write-Host "Service Name: " -NoNewLine
-                        Write-Host $x.Name -ForegroundColor green
-                        Write-Host "Service Status: " -NoNewLine
-                        Write-Host $x.Status -ForegroundColor green
-                        Write-Host "Service State: " -NoNewLine
-                        Write-Host $x.State -ForegroundColor green
-                        Write-Host "Process ID: " -NoNewLine
-                        Write-Host $x.ProcessId -ForegroundColor green
-                        Write-Host "Process PPID: " -NoNewLine
-                        Write-Host $x.ParentProcessID -ForegroundColor green
-                        Write-Host "Creation Class:" $x.CreationClassName
-                        Write-Host "System Name:" $x.SystemName
-                        if ($x.PathName) {
-                            Write-Host "Executable Path:" $x.PathName 
-                        }
-                        if ($x.InstallDate) {
-                            Write-Host "Install Date:" $x.InstallDate
-                        }
-                        Write-Host "Description: " $x.Description
-                        Write-Host
-                        NetworkInformation($x.ProcessID)
+                        ServicePrint($x)
                     }
                 }
             }
@@ -402,29 +336,7 @@ function ServiceInformation() {
                 $Services = get-ciminstance Win32_Service
             }
             foreach ($x in $Services) {
-                $Process = get-ciminstance Win32_Process | ? ProcessID -eq $x.ProcessID
-                Write-Host "<-----Service Information----->" -ForegroundColor green 
-                Write-Host "Service Name: " -NoNewLine
-                Write-Host $x.Name -ForegroundColor green
-                Write-Host "Service Status: " -NoNewLine
-                Write-Host $x.Status -ForegroundColor green
-                Write-Host "Service State: " -NoNewLine
-                Write-Host $x.State -ForegroundColor green
-                Write-Host "Process ID: " -NoNewLine
-                Write-Host $x.ProcessId -ForegroundColor green
-                Write-Host "Process PPID: " -NoNewLine
-                Write-Host $x.ParentProcessID -ForegroundColor green
-                Write-Host "Creation Class:" $x.CreationClassName
-                Write-Host "System Name:" $x.SystemName
-                if ($x.PathName) {
-                    Write-Host "Executable Path:" $x.PathName 
-                }
-                if ($x.InstallDate) {
-                    Write-Host "Install Date:" $x.InstallDate
-                }
-                Write-Host "Description: " $x.Description
-                Write-Host
-                NetworkInformation($x.ProcessID)
+                ServicePrint($x)
             }
         }
     }                   
