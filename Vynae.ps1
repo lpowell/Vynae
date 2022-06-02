@@ -58,17 +58,17 @@ function NetworkPrint($Conn) {
     Write-Host $Conn.State -ForegroundColor $GoodColor
     if ($Conn.LocalAddress | Select-String -Pattern "::") {
         if ($Conn.LocalAddress -eq '::') {
-            Write-Host "Local IPv6 Address/Port:" -NoNewline
+            Write-Host "Local IPv6 Address/Port: " -NoNewline
             Write-Host "any" -ForegroundColor $BadColor -NoNewline
-            Write-Host ":" $Conn.LocalPort
+            Write-Host " :" $Conn.LocalPort
         }
         else {
             Write-Host "Local IPv6 Address/Port: " $Conn.LocalAddress ":" $Conn.LocalPort   
         }
         if ($Conn.RemoteAddress -eq '::') {
-            Write-Host "Remote IPv6 Address/Port:" -NoNewline
+            Write-Host "Remote IPv6 Address/Port: " -NoNewline
             Write-Host "any" -ForegroundColor $BadColor -NoNewline
-            Write-Host ":" $Conn.RemotePort
+            Write-Host " :" $Conn.RemotePort
         }
         else {
             Write-Host "Remote IPv6 Address/Port:" $Conn.RemoteAddress ":" $Conn.RemotePort
@@ -76,17 +76,17 @@ function NetworkPrint($Conn) {
     }
     else {
         if ($Conn.LocalAddress -eq '0.0.0.0') {
-            Write-Host "Local IPv4 Address/Port:" -NoNewline
+            Write-Host "Local IPv4 Address/Port: " -NoNewline
             Write-Host "any" -ForegroundColor $BadColor -NoNewline
-            Write-Host ":" $Conn.LocalPort
+            Write-Host " :" $Conn.LocalPort
         }
         else {
             Write-Host "Local IPv4 Address/Port:" $Conn.LocalAddress ":" $Conn.LocalPort
         }
         if ($Conn.RemoteAddress -eq '0.0.0.0') {
-            Write-Host "Remote IPv4 Address/Port:" -NoNewline
+            Write-Host "Remote IPv4 Address/Port: " -NoNewline
             Write-Host "any" -ForegroundColor $BadColor -NoNewline
-            Write-Host ":" $Conn.RemotePort
+            Write-Host " :" $Conn.RemotePort
         }
         else {
             Write-Host "Remote IPv4 Address/Port:" $Conn.RemoteAddress ":" $Conn.RemotePort
