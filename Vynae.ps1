@@ -183,7 +183,6 @@ function NetworkInformation($ProcessID) {
             NetworkPrint($x)
         }  
     }
-
 }
 
 function ParentProcessTracing(){
@@ -368,57 +367,40 @@ function ServicePrint($Service){
 }
 
 function VynaeHelp($Action) {
-    Write-Host
-    Write-Host "Vynae"
-    Write-Host "A PowerShell tool for extracting process Information"
-    Write-Host
-    Write-Host "Usage"
-    Write-Host
+    Write-Host "`nVynae:"
+    Write-Host "A PowerShell tool for extracting process information."
+    Write-Host "`nUsage:"
     Write-Host "    -ID" -ForegroundColor $GoodColor -NoNewLine
     Write-Host " Used to pull information on a specific ProcessID"
-    Write-Host
-    Write-Host "    -ParentID" -ForegroundColor $GoodColor -NoNewLine
+    Write-Host "`n    -ParentID" -ForegroundColor $GoodColor -NoNewLine
     Write-Host " Used to list all processes spawned by the given ParentID"
-    Write-Host
-    Write-Host "    -Name" -ForegroundColor $GoodColor -NoNewLine
+    Write-Host "`n    -Name" -ForegroundColor $GoodColor -NoNewLine
     Write-Host " Used to pull information on ALL processes whose names match the value"
-    Write-Host
-    Write-Host "    -Trace" -ForegroundColor $GoodColor -NoNewLine
+    Write-Host "`n    -Trace" -ForegroundColor $GoodColor -NoNewLine
     Write-Host " Used to trace a process ParentProcessID back to the originating process"
-    Write-Host "            Must specify a -Name or -ID"
-    Write-Host
-    Write-Host "    -Time -Date -TimeActive" -ForegroundColor $GoodColor -NoNewLine
+    Write-Host "             Must specify a -Name or -ID"
+    Write-Host "`n    -Time -Date -TimeActive" -ForegroundColor $GoodColor -NoNewLine
     Write-Host " Used to filter by date [str], time [int 0-23], and time active [int 0-23]"
-    Write-Host
-    Write-Host "    -Colorblind" -ForegroundColor $GoodColor -NoNewLine
+    Write-Host "`n    -Colorblind" -ForegroundColor $GoodColor -NoNewLine
     Write-Host " Uses magenta and cyan colors to helpfully alleviate colorblind issues"
-    Write-Host
-    Write-Host "    -NetOnly" -ForegroundColor $GoodColor -NoNewLine
+    Write-Host "`n    -NetOnly" -ForegroundColor $GoodColor -NoNewLine
     Write-Host " Used to only pull processes with network connections"
-    Write-Host
-    Write-Host "    -NetStatus" -ForegroundColor $GoodColor -NoNewLine
+    Write-Host "`n    -NetStatus" -ForegroundColor $GoodColor -NoNewLine
     Write-Host " Used to only pull processes with matching network connection states"
-    Write-Host
-    Write-Host "    -NetSupress" -ForegroundColor $GoodColor -NoNewLine
+    Write-Host "`n    -NetSupress" -ForegroundColor $GoodColor -NoNewLine
     Write-Host " Used to hide network information."
-    Write-Host
-    Write-Host "    -Service" -ForegroundColor $GoodColor -NoNewLine
+    Write-Host "`n    -Service" -ForegroundColor $GoodColor -NoNewLine
     Write-Host " Used to scan services instead of processes"
-    Write-Host "            Use -ServiceState to filter by Running/Stopped"
-    Write-Host
-    Write-Host "    -Output" -ForegroundColor $GoodColor -NoNewLine
+    Write-Host "               Use -ServiceState to filter by Running/Stopped"
+    Write-Host "`n    -Output" -ForegroundColor $GoodColor -NoNewLine
     Write-Host " Specifies the output path for the PowerShell transcript of the session"
-    Write-Host
-    Write-Host "    -Hash" -ForegroundColor $GoodColor -NoNewLine
+    Write-Host "`n    -Hash" -ForegroundColor $GoodColor -NoNewLine
     Write-Host " Hashes each process executable and compares it to the list Hashes.txt"
     Write-Host "            Alerts on matched hashes and processes without executable paths"
     Write-Host "            Hide No Path alerts with -NoPath, and hide No match found messages with -AlertOnly."
-    Write-Host
-    Write-Host "    -Help" -ForegroundColor $GoodColor -NoNewLine
+    Write-Host "`n    -Help" -ForegroundColor $GoodColor -NoNewLine
     Write-Host " Displays this menu"
-    Write-Host
-    Write-Host "Running with no parameters will scan all processes and list process information and network information"
-    Write-Host
+    Write-Host "`nRunning with no parameters will scan all processes and list process information and network information.`n"
 }
 GlobalOptions
 if($Output){
