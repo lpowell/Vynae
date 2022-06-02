@@ -1,22 +1,5 @@
 param($ID, $Name, [switch]$Hash, [switch]$Trace, [switch]$NetOnly, [switch]$help, [switch]$AlertOnly, [switch]$NoPath, [switch]$Service, [switch]$NetSupress, [switch]$Colorblind, $Time, $Date, $TimeActive, $ServiceState, $ParentID, $NetStatus, $Output)
-# Parameters accepted
 
-# Function names 
-# PidHunt -> ProcessInformation
-# also handles PidSnif and PidName
-# 
-# all the write-host net info is now in it's own function that accepts proc names
-# ErrorProcessing is for setting error states off
-# 
-# Design goals
-# 1. Everything should be function based
-# 2. Functions should be easy to understand
-# Parameters as flags, e.g. if(NetOnly)
-# 
-# Credit & Thanks
-# Caleb for idea to move output to print functions
-# Alex for time filtering and active time displays, as well as other QoL 
-# John for helpful input in drafting stage
 
 function GlobalOptions(){
     $global:DateTime = get-date
