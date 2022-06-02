@@ -26,7 +26,7 @@ function ProcessPrint($Process) {
         return
     }
     $ParentPath = Get-CimInstance CIM_Process | Where-Object ProcessID -EQ $Process.ParentProcessID 
-    Write-Host "<-----Process Information----->" -ForegroundColor $GoodColor 
+    Write-Host "<-----Process Information----->" -ForegroundColor DarkCyan
     Write-Host "Process Name: " -NoNewline
     Write-Host $Process.ProcessName -ForegroundColor $GoodColor
     Write-Host "Process ID: " -NoNewline
@@ -101,7 +101,7 @@ function ProcessTrace($Process) {
         ParentProcessTracing($ID)
     }
     else {
-        Write-Host "<--Process cannot Be traced further-->" -ForegroundColor $BadColor
+        Write-Host "<-- Process cannot Be traced further -->`n" -ForegroundColor $BadColor
     }
 }
 
