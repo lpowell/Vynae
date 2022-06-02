@@ -89,6 +89,15 @@ function NetworkPrint($Conn){
     Write-Host
 }
 
+function ProcessTrace($Process){
+    if((get-ciminstance CIM_Process | ? ProcessId -eq $Process.ParentProcessID) -And [int]$Process.ProcessId -ne 0){
+        $ID = $Process.ParentProcessID
+        ParentProcessTracing
+    }else{
+        Write-Host "<--Process cannot Be traced further-->" -ForegroundColor $BadColor
+    }
+}
+
 # if name elif id else default && use params for name and id
 function ProcessInformation() {
     if ($Name) {
@@ -177,33 +186,19 @@ function NetworkInformation($ProcessID) {
 
 }
 
-function ParentProcessTracing() {
-    if ($ID) {
-        foreach ($x in get-ciminstance CIM_Process | ? ProcessID -eq $ID) {
+function ParentProcessTracing(){
+    if($ID){
+        foreach($x in get-ciminstance CIM_Process | ? ProcessID -eq $ID){
             ProcessPrint($x)
-            if ((get-ciminstance CIM_Process | ? ProcessId -eq $x.ParentProcessID) -And [int]$x.ProcessId -ne 0) {
-                $ID = $x.ParentProcessID
-                ParentProcessTracing($ID)
-            }
-            else {
-                Write-Host "<--Process cannot Be traced further-->" -ForegroundColor red
-            }
+            ProcessTrace($x)
         }
-    }
-    elseif ($Name) {
-        foreach ($x in get-ciminstance CIM_Process | ? ProcessName -match $Name) {
+    }elseif($Name){
+        foreach($x in get-ciminstance CIM_Process | ? ProcessName -match $Name){
             ProcessPrint($x)
-            if ((get-ciminstance CIM_Process | ? ProcessId -eq $x.ParentProcessID) -And [int]$x.ProcessId -ne 0) {
-                $ID = $x.ParentProcessID
-                ParentProcessTracing($ID)
-            }
-            else {
-                Write-Host "<--Process cannot Be traced further-->" -ForegroundColor red
-            }
+            ProcessTrace($x)
         }
     }
 }
-
 
 function ProcessHashing(){
     $HashedArray=@()
