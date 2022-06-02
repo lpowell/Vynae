@@ -14,20 +14,25 @@ Usage
 
     -ID Used to pull information on a specific ProcessID
 
-    -ParentID Used to list all processes spawned by the given PPID
+    -ParentID Used to list all processes spawned by the given ParentID
 
     -Name Used to pull information on ALL processes whose names match the value
 
     -Trace Used to trace a process ParentProcessID back to the originating process
             Must specify a -Name or -ID
 
+    -Time -Date -TimeActive Used to filter by date [str], time [int 0-23], and time active [int 0-23]
+
+    -Colorblind Uses magenta and cyan colors to helpfully alleviate colorblind issues
+
     -NetOnly Used to only pull processes with network connections
 
     -NetStatus Used to only pull processes with matching network connection states
-    
-    -NetSupress Used to supress network connection information
-    
-    -Service Scans services instead of processes. Can be filtered by state with -ServiceState. 
+
+    -NetSupress Used to hide network information.
+
+    -Service Used to scan services instead of processes
+            Use -ServiceState to filter by Running/Stopped
 
     -Output Specifies the output path for the PowerShell transcript of the session
 
@@ -36,6 +41,8 @@ Usage
             Hide No Path alerts with -NoPath, and hide No match found messages with -AlertOnly.
 
     -Help Displays this menu
+
+Running with no parameters will scan all processes and list process information and network information
     
     
 Example usages
@@ -67,6 +74,14 @@ This will compare the hash of every unique chrome process (by executable path) t
     Vynae -hash -NoPath -AlertOnly
 
 This will hash all active processes, only showing alerts and supressing the 'No file path' alerts
+
+    Vynae -NetSupress -TimeActive 6 -Date '6/2' 
+ 
+ This will display processes that have been active for 6 hours on June 2nd
+ 
+    Vynae -NetOnly -Name chrome -Colorblind
+    
+This will display chrome processes with network connections with more colorblind-friendly colors (Magenta and Cyan)
     
 # History
 This project started as an offshoot of a small script written for CCDC wherein I needed to quickly identify key information about a specific process without access to Process Explorer. I've developed it further in my spare time, and plan on adding additional features over time. Ideally, it will be a light-weight CLI tool for quickly accessing process information.
