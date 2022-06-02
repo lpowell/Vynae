@@ -52,6 +52,43 @@ function ProcessPrint($Process){
     NetworkInformation($Process.ProcessID)
 }
 
+function NetworkPrint($Conn){
+    Write-Host "State: " -NoNewLine
+    Write-Host $Conn.State -ForegroundColor $GoodColor
+    if($Conn.LocalAddress | Select-String -Pattern "::"){
+        if($Conn.LocalAddress -eq '::'){
+            Write-Host "Local IPv6 Address/Port:" -NoNewLine
+            Write-Host "any" -ForegroundColor $BadColor -NoNewLine
+            Write-Host ":" $Conn.LocalPort
+        }else{
+            Write-Host "Local IPv6 Address/Port: " $Conn.LocalAddress ":" $Conn.LocalPort   
+        }
+        if($Conn.RemoteAddress -eq '::'){
+            Write-Host "Remote IPv6 Address/Port:" -NoNewLine
+            Write-Host "any" -ForegroundColor $BadColor -NoNewLine
+            Write-Host ":" $Conn.RemotePort
+        }else{
+            Write-Host "Remote IPv6 Address/Port:" $Conn.RemoteAddress ":" $Conn.RemotePort
+        }
+    }else{
+        if($Conn.LocalAddress -eq '0.0.0.0'){
+            Write-Host "Local IPv4 Address/Port:" -NoNewLine
+            Write-Host "any" -ForegroundColor $BadColor -NoNewLine
+            Write-Host ":" $Conn.LocalPort
+        }else{
+            Write-Host "Local IPv4 Address/Port:" $Conn.LocalAddress ":" $Conn.LocalPort
+        }
+        if($Conn.RemoteAddress -eq '0.0.0.0'){
+            Write-Host "Remote IPv4 Address/Port:" -NoNewLine
+            Write-Host "any" -ForegroundColor $BadColor -NoNewLine
+            Write-Host ":" $Conn.RemotePort
+        }else{
+            Write-Host "Remote IPv4 Address/Port:" $Conn.RemoteAddress ":" $Conn.RemotePort
+        }
+    }
+    Write-Host
+}
+
 # if name elif id else default && use params for name and id
 function ProcessInformation() {
     if ($Name) {
@@ -126,91 +163,15 @@ function NetworkInformation($ProcessID) {
         return
     }
     if (get-nettcpconnection | ? OwningProcess -eq $ProcessID | ? State -eq $NetStatus) {
-        Write-Host "<-----Net Information----->" -ForegroundColor green
+        Write-Host "<-----Net Information----->" -ForegroundColor $GoodColor
         foreach ($x in (get-nettcpconnection | ? OwningProcess -eq $ProcessID | ? State -eq $NetStatus)) {
-            Write-Host "State: " -NoNewLine
-            Write-Host $x.State -ForegroundColor green
-            if ($x.LocalAddress | Select-String -Pattern "::") {
-                if ($x.LocalAddress -eq '::') {
-                    Write-Host "Local IPv6 Address/Port:" -NoNewLine
-                    Write-Host "any" -ForegroundColor red -NoNewLine
-                    Write-Host ":" $x.LocalPort
-                }
-                else {
-                    Write-Host "Local IPv6 Address/Port: " $x.LocalAddress ":" $x.LocalPort   
-                }
-                if ($x.RemoteAddress -eq '::') {
-                    Write-Host "Remote IPv6 Address/Port:" -NoNewLine
-                    Write-Host "any" -ForegroundColor red -NoNewLine
-                    Write-Host ":" $x.RemotePort
-                }
-                else {
-                    Write-Host "Remote IPv6 Address/Port:" $x.RemoteAddress ":" $x.RemotePort
-                }
-            }
-            else {
-                if ($x.LocalAddress -eq '0.0.0.0') {
-                    Write-Host "Local IPv4 Address/Port:" -NoNewLine
-                    Write-Host "any" -ForegroundColor red -NoNewLine
-                    Write-Host ":" $x.LocalPort
-                }
-                else {
-                    Write-Host "Local IPv4 Address/Port:" $x.LocalAddress ":" $x.LocalPort
-                }
-                if ($x.RemoteAddress -eq '0.0.0.0') {
-                    Write-Host "Remote IPv4 Address/Port:" -NoNewLine
-                    Write-Host "any" -ForegroundColor red -NoNewLine
-                    Write-Host ":" $x.RemotePort
-                }
-                else {
-                    Write-Host "Remote IPv4 Address/Port:" $x.RemoteAddress ":" $x.RemotePort
-                }
-            }
-            Write-Host
+            NetworkPrint($x)
         }  
     }
     elseif (get-nettcpconnection | ? OwningProcess -eq $ProcessID) {
-        Write-Host "<-----Net Information----->" -ForegroundColor green
+        Write-Host "<-----Net Information----->" -ForegroundColor $GoodColor
         foreach ($x in (get-nettcpconnection | ? OwningProcess -eq $ProcessID)) {
-            Write-Host "State: " -NoNewLine
-            Write-Host $x.State -ForegroundColor green
-            if ($x.LocalAddress | Select-String -Pattern "::") {
-                if ($x.LocalAddress -eq '::') {
-                    Write-Host "Local IPv6 Address/Port:" -NoNewLine
-                    Write-Host "any" -ForegroundColor red -NoNewLine
-                    Write-Host ":" $x.LocalPort
-                }
-                else {
-                    Write-Host "Local IPv6 Address/Port: " $x.LocalAddress ":" $x.LocalPort   
-                }
-                if ($x.RemoteAddress -eq '::') {
-                    Write-Host "Remote IPv6 Address/Port:" -NoNewLine
-                    Write-Host "any" -ForegroundColor red -NoNewLine
-                    Write-Host ":" $x.RemotePort
-                }
-                else {
-                    Write-Host "Remote IPv6 Address/Port:" $x.RemoteAddress ":" $x.RemotePort
-                }
-            }
-            else {
-                if ($x.LocalAddress -eq '0.0.0.0') {
-                    Write-Host "Local IPv4 Address/Port:" -NoNewLine
-                    Write-Host "any" -ForegroundColor red -NoNewLine
-                    Write-Host ":" $x.LocalPort
-                }
-                else {
-                    Write-Host "Local IPv4 Address/Port:" $x.LocalAddress ":" $x.LocalPort
-                }
-                if ($x.RemoteAddress -eq '0.0.0.0') {
-                    Write-Host "Remote IPv4 Address/Port:" -NoNewLine
-                    Write-Host "any" -ForegroundColor red -NoNewLine
-                    Write-Host ":" $x.RemotePort
-                }
-                else {
-                    Write-Host "Remote IPv4 Address/Port:" $x.RemoteAddress ":" $x.RemotePort
-                }
-            }
-            Write-Host
+            NetworkPrint($x)
         }  
     }
 
