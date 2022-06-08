@@ -1,4 +1,4 @@
-param($ID, $Name, [switch]$Hash, [switch]$Trace, [switch]$NetOnly, [switch]$help, [switch]$AlertOnly, [switch]$NoPath, [switch]$Service, [switch]$NetSupress, [switch]$Colorblind, $Time, $Date, $TimeActive, $ServiceState, $ParentID, $NetStatus, $Output)
+param($ID, $Name, [switch]$Hash, [switch]$Trace, [switch]$NetOnly, [switch]$help, [switch]$AlertOnly, [switch]$NoPath, [switch]$Service, [switch]$NetSupress, [switch]$Colorblind, $Time, $Date, $TimeActive, $ServiceState, $ParentID, $NetStatus, $Output, $Module)
 # Parameters accepted
 
 # Function names 
@@ -20,6 +20,7 @@ param($ID, $Name, [switch]$Hash, [switch]$Trace, [switch]$NetOnly, [switch]$help
 
 function GlobalOptions(){
     $global:DateTime = get-date
+    $global:Path =Get-location
     $global:ErrorActionPreference="SilentlyContinue"
     if($Colorblind){
         $global:GoodColor = 'cyan'
@@ -470,6 +471,12 @@ function VynaeHelp($Action){
     Write-Host "            Alerts on matched hashes and processes without executable paths"
     Write-Host "            Hide No Path alerts with -NoPath, and hide No match found messages with -AlertOnly."
     Write-Host
+    Write-Host "    -Modules" -ForegroundColor $GoodColor -NoNewLine
+    Write-Host "            Runs modules in /Modules"
+    Write-Host "            Integrity"
+    Write-Host "                Creates a scheduled task that compares a control list of processes"
+    Write-Host "                to the current running processes and reports the differences, if any."
+    Write-Host
     Write-Host "    -Help" -ForegroundColor $GoodColor -NoNewLine
     Write-Host " Displays this menu"
     Write-Host
@@ -477,6 +484,14 @@ function VynaeHelp($Action){
     Write-Host
 }
 GlobalOptions
+if($Module){
+    if($Module -eq 'Integrity'){
+        $Path = get-location
+        $Path = $Path.Path
+        & "$Path\Modules\VynaeIntegrityCheck.ps1" -Mode Control -Path $Path
+    }
+    exit
+}
 if($Output){
     start-transcript -path $output -append
 }
