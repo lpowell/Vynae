@@ -13,7 +13,7 @@ function CreateControl{
     get-ciminstance cim_process | Export-csv -Path "$Path\ProcList.csv"
 }
 
-function Compare{
+function CompareList{
     get-ciminstance cim_process | Export-csv -Path "$Path\ProcTest.csv"
     $ControlFile = import-csv -Path $Path\ProcList.csv
     $TestFile = import-csv -Path $Path\ProcTest.csv
@@ -27,7 +27,7 @@ if($Mode -eq 'Control'){
     ScheduleTask
     Write-Host "Schedule Task Created"
 }elseif($Mode -eq 'Task'){
-    Compare
+    CompareList
     $Path
 }else{
     write-host "Not running in Task or Control modes, see Vynae or the GitHub for more information"

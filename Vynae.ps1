@@ -1,4 +1,4 @@
-param($ID, $Name, [switch]$Hash, [switch]$Trace, [switch]$NetOnly, [switch]$help, [switch]$AlertOnly, [switch]$NoPath, [switch]$Service, [switch]$NetSupress, [switch]$Colorblind, $Time, $Date, $TimeActive, $ServiceState, $ParentID, $NetStatus, $Output, $Module, $Mode)
+param($ID, $Name, [switch]$Hash, [switch]$Trace, [switch]$NetOnly, [switch]$help, [switch]$AlertOnly, [switch]$NoPath, [switch]$Service, [switch]$NetSupress, [switch]$Colorblind, $Time, $Date, $TimeActive, $ServiceState, $ParentID, $NetStatus, $Output, $Module, $Mode, [switch]$Default)
 # Parameters accepted
 
 
@@ -409,12 +409,19 @@ function ServicePrint($Service){
     Write-Host
 }
 
-function VynaeHelp($Action){
+function VynaeHelp(){
     Write-Host
     Write-Host "Vynae"
     Write-Host "A PowerShell tool for extracting process Information"
     Write-Host
     Write-Host "Usage"
+    Write-Host
+    Write-Host "    -Default" -ForegroundColor $GoodColor -NoNewLine
+    Write-Host " Runs Vynae's process information gatherer"
+    Write-Host "        Gathers Name, ID, PPID Name, PPID, PPID Path, Creation Date, Active Time"
+    Write-Host "        CSName, Executable Path, and Command Line options"
+    Write-Host 
+    Write-Host "        Filter with ID, Name, ParentID, Time options, or Net options"
     Write-Host
     Write-Host "    -ID" -ForegroundColor $GoodColor -NoNewLine
     Write-Host " Used to pull information on a specific ProcessID"
@@ -430,10 +437,10 @@ function VynaeHelp($Action){
     Write-Host "            Must specify a -Name or -ID"
     Write-Host
     Write-Host "    -Time -Date -TimeActive" -ForegroundColor $GoodColor -NoNewLine
-    Write-Host " Used to filter by date [str], time [int 0-23], and time active [int 0-23]"
+    Write-Host " Used to filter by date [str], time [int 0-23], and time active(hours) [int 0-23]"
     Write-Host
     Write-Host "    -Colorblind" -ForegroundColor $GoodColor -NoNewLine
-    Write-Host " Uses magenta and cyan colors to helpfully alleviate colorblind issues"
+    Write-Host " Uses magenta and cyan colors to help alleviate colorblind issues"
     Write-Host
     Write-Host "    -NetOnly" -ForegroundColor $GoodColor -NoNewLine
     Write-Host " Used to only pull processes with network connections"
@@ -456,7 +463,7 @@ function VynaeHelp($Action){
     Write-Host "            Alerts on matched hashes and processes without executable paths"
     Write-Host "            Hide No Path alerts with -NoPath, and hide No match found messages with -AlertOnly."
     Write-Host
-    Write-Host "    -Modules" -ForegroundColor $GoodColor -NoNewLine
+    Write-Host "    -Module" -ForegroundColor $GoodColor -NoNewLine
     Write-Host "            Runs modules in /Modules"
     Write-Host "            Integrity"
     Write-Host "                Creates a scheduled task that compares a control list of processes"
@@ -500,9 +507,23 @@ if($Hash){
 if($Help){
     VynaeHelp
 }
-if(-Not $Trace -and -Not $Hash -And -Not $Help -And -Not $Service){
+if($Default){
     ProcessInformation  
 }
 if($Output){
     stop-transcript
+}
+if($PSBoundParameters.Values.Count -eq 0){
+    Write-Host
+    Write-Host "Vynae"
+    Write-Host "    A PowerShell tool for extracting process Information"
+    Write-Host
+    Write-Host "Created By Liam Powell for use in NCCDC 2022-23"
+    Write-Host
+    Write-Host "For usage details, see Vynae -help"
+    Write-Host
+    exit
+}
+if(-Not $Trace -and -Not $Hash -And -Not $Help -And -Not $Service){
+    ProcessInformation  
 }
