@@ -1,4 +1,4 @@
-param($ID, $Name, [switch]$Hash, [switch]$Trace, [switch]$NetOnly, [switch]$help, [switch]$AlertOnly, [switch]$NoPath, [switch]$Service, [switch]$NetSupress, [switch]$Colorblind, $Time, $Date, $TimeActive, $ServiceState, $ParentID, $NetStatus, $Output, $Module)
+param($ID, $Name, [switch]$Hash, [switch]$Trace, [switch]$NetOnly, [switch]$help, [switch]$AlertOnly, [switch]$NoPath, [switch]$Service, [switch]$NetSupress, [switch]$Colorblind, $Time, $Date, $TimeActive, $ServiceState, $ParentID, $NetStatus, $Output, $Module, $Mode)
 # Parameters accepted
 
 
@@ -461,6 +461,10 @@ function VynaeHelp($Action){
     Write-Host "            Integrity"
     Write-Host "                Creates a scheduled task that compares a control list of processes"
     Write-Host "                to the current running processes and reports the differences, if any."
+    Write-Host "            RunKeys"
+    Write-Host "                Checks registry keys and temp files for known malicious hashes"
+    Write-Host "                Use -Mode to specify RegKey check or TempFiles check"
+    Write-Host "                Alternatively, run without -Mode to scan both"
     Write-Host
     Write-Host "    -Help" -ForegroundColor $GoodColor -NoNewLine
     Write-Host " Displays this menu"
@@ -474,6 +478,10 @@ if($Module){
         $Path = get-location
         $Path = $Path.Path
         & "$Path\Modules\VynaeIntegrityCheck.ps1" -Mode Control -Path $Path
+    }elseif($Module -eq 'RunKeys'){
+        $Path = get-location
+        $Path =$Path.Path
+        & "$Path\Modules\VynaeRegCheck.ps1" -Mode $Mode -Path $Path
     }
     exit
 }
