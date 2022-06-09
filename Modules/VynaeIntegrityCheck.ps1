@@ -10,13 +10,13 @@ function ScheduleTask{
 
 function CreateControl{
     Remove-Item "$Path\HashList.csv"
-    get-ciminstance cim_process | Export-csv -Path "$Path\HashList.csv"
+    get-ciminstance cim_process | Export-csv -Path "$Path\ProcList.csv"
 }
 
-function CompareHash{
-    get-ciminstance cim_process | Export-csv -Path "$Path\HashTest.csv"
-    $ControlFile = import-csv -Path $Path\HashList.csv
-    $TestFile = import-csv -Path $Path\HashTest.csv
+function Compare{
+    get-ciminstance cim_process | Export-csv -Path "$Path\ProcTest.csv"
+    $ControlFile = import-csv -Path $Path\ProcList.csv
+    $TestFile = import-csv -Path $Path\ProcTest.csv
     compare-object -referenceobject $ControlFile -differenceobject $TestFile -passthru | out-gridview -title "Processes not found in control file"
     read-host
 }
@@ -27,7 +27,7 @@ if($Mode -eq 'Control'){
     ScheduleTask
     Write-Host "Schedule Task Created"
 }elseif($Mode -eq 'Task'){
-    CompareHash
+    Compare
     $Path
 }else{
     write-host "Not running in Task or Control modes, see Vynae or the GitHub for more information"

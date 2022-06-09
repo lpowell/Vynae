@@ -94,7 +94,7 @@ Function TempFiles{
                     Write-Host "Name: " $x.Name
                     Write-Host "Path: " $x.FullName
                     Write-Host "Access Time: " $x.LastAccessTime
-                    Write-Host "Hash: " get-filehash $x.FullName
+                    Write-Host "Hash: " (get-filehash $x.FullName | Select-Object Hash)
                     Write-Host "Matching Hash: " $h
                     Write-Host
                 }
