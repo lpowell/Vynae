@@ -10,6 +10,8 @@ Currently, Vynae only supports output through Start-Transcript which is accessed
 
 Which redirects the console stream to a file.
 
+Module information can be found in the wiki
+
 Usage
 
     -ID Used to pull information on a specific ProcessID
