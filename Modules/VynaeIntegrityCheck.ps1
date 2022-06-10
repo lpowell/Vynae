@@ -19,20 +19,20 @@ function ScheduleTask{
     Register-ScheduledTask -Action $Action -Trigger $Trigger -TaskName "Vynae Integrity Check" -Description "Compare process hash against control list"
 
     Unregister-ScheduledTask -TaskName "Vynae Integrity Check - Control" -Confirm:$false
-    $Action = New-ScheduledTaskAction -Execute 'powershell.exe' -Argument "-File `"$Path\VynaeIntegrityCheck.ps1`" -Mode `"Control`" -Path `"$Path`""
+    $Action = New-ScheduledTaskAction -Execute 'powershell.exe' -Argument "-File `"$Path\Modules\VynaeIntegrityCheck.ps1`" -Mode `"Control`" -Path `"$Path`""
     $Trigger = New-ScheduledTaskTrigger -AtStartup 
     Register-ScheduledTask -Action $Action -Trigger $Trigger -TaskName "Vynae Integrity Check - Control" -Description "Create a control list for the current session"
 }
 
 function CreateControl{
-    Remove-Item "$Path\HashList.csv"
-    get-ciminstance cim_process | Export-csv -Path "$Path\ProcList.csv"
+    Remove-Item "$Path\Modules\HashList.csv"
+    get-ciminstance cim_process | Export-csv -Path "$Path\Modules\ProcList.csv"
 }
 
 function CompareList{
-    get-ciminstance cim_process | Export-csv -Path "$Path\ProcTest.csv"
-    $ControlFile = import-csv -Path $Path\ProcList.csv
-    $TestFile = import-csv -Path $Path\ProcTest.csv
+    get-ciminstance cim_process | Export-csv -Path "$Path\Modules\ProcTest.csv"
+    $ControlFile = import-csv -Path $Path\Modules\ProcList.csv
+    $TestFile = import-csv -Path $Path\Modules\ProcTest.csv
     compare-object -referenceobject $ControlFile -differenceobject $TestFile -passthru | out-gridview -title "Processes not found in control file"
     read-host
 }
