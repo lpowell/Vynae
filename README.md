@@ -10,9 +10,19 @@ Currently, Vynae only supports output through Start-Transcript which is accessed
 
 Which redirects the console stream to a file.
 
-Module information can be found in the wiki
+## Modules
+    
+   Integrity
+   
+   &emsp;An addon that creates a control list of processes and regularly checks the control list to the current list of processes and reports diffrences.
+   
+   RegCheck
+   
+   &emsp;An addon that enumerates Run keys in HKLM and HKCU Run and RunOnce locations. It also compares hashes of items in C:\Windows\Temp to a list of known malicious hashes.
 
-Usage
+More module information can be found in the wiki
+
+## Usage
 
     -ID Used to pull information on a specific ProcessID
 
@@ -47,7 +57,7 @@ Usage
 Running with no parameters will scan all processes and list process information and network information
     
     
-Example usages
+## Example usages
 
     Vynae -Service -ServiceState Running -NetSupress
     
