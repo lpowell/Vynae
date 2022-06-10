@@ -1,11 +1,27 @@
 param($Mode,$Path=(get-location),$Minutes=20)
 # Change minutes either in the script, or by calling the module directly through the shell
 
+function GlobalOptions(){
+    $global:ErrorActionPreference="SilentlyContinue"
+    if($Colorblind){
+        $global:GoodColor = 'cyan'
+        $global:BadColor = 'magenta'
+        }else{
+            $global:GoodColor = 'green'
+            $global:BadColor = 'red'
+        }
+}
+
 function ScheduleTask{
     Unregister-ScheduledTask -TaskName "Vynae Integrity Check" -Confirm:$false
     $Action = New-ScheduledTaskAction -Execute 'powershell.exe' -Argument "-File `"$Path\Modules\VynaeIntegrityCheck.ps1`" -Mode `"Task`" -Path `"$Path`""
     $Trigger = New-ScheduledTaskTrigger -Once -At (Get-Date) -RepetitionInterval (New-TimeSpan -Minutes $Minutes)
     Register-ScheduledTask -Action $Action -Trigger $Trigger -TaskName "Vynae Integrity Check" -Description "Compare process hash against control list"
+
+    Unregister-ScheduledTask -TaskName "Vynae Integrity Check - Control" -Confirm:$false
+    $Action = New-ScheduledTaskAction -Execute 'powershell.exe' -Argument "-File `"$Path\VynaeIntegrityCheck.ps1`" -Mode `"Control`" -Path `"$Path`""
+    $Trigger = New-ScheduledTaskTrigger -AtStartup 
+    Register-ScheduledTask -Action $Action -Trigger $Trigger -TaskName "Vynae Integrity Check - Control" -Description "Create a control list for the current session"
 }
 
 function CreateControl{
@@ -21,6 +37,7 @@ function CompareList{
     read-host
 }
 
+GlobalOptions
 if($Mode -eq 'Control'){
     CreateControl
     Write-Host "Control Created"
@@ -28,7 +45,6 @@ if($Mode -eq 'Control'){
     Write-Host "Schedule Task Created"
 }elseif($Mode -eq 'Task'){
     CompareList
-    $Path
 }else{
     write-host "Not running in Task or Control modes, see Vynae or the GitHub for more information"
     read-host
