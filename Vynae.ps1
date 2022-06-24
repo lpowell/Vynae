@@ -7,6 +7,7 @@ function GlobalOptions(){
     $global:DateTime = get-date
     $global:Path =Get-location
     $global:ErrorActionPreference="SilentlyContinue"
+    # $host.UI.RawUI.BackgroundColor = "Black"
     if($Colorblind){
         $global:GoodColor = 'cyan'
         $global:BadColor = 'magenta'
@@ -465,6 +466,9 @@ function VynaeHelp(){
     Write-Host
     Write-Host "    -Module" -ForegroundColor $GoodColor -NoNewLine
     Write-Host "            Runs modules in /Modules"
+    Write-Host "                Unless specified, Modules run in either -Mode Task or -Mode Control"
+    Write-Host "                -Mode Task will create the scheduled task associated with the module"
+    Write-Host "                -Mode Control will manually run the module's function"
     Write-Host "            Integrity"
     Write-Host "                Creates a scheduled task that compares a control list of processes"
     Write-Host "                to the current running processes and reports the differences, if any."
@@ -472,6 +476,9 @@ function VynaeHelp(){
     Write-Host "                Checks registry keys and temp files for known malicious hashes"
     Write-Host "                Use -Mode to specify RegKey check or TempFiles check"
     Write-Host "                Alternatively, run without -Mode to scan both"
+    Write-Host "            BlackWall"
+    Write-Host "                Creates a scheduled task that auto-bans IP addresses associated with security event 4625"
+    Write-Host "                Can be modified using BlackWall.xml"
     Write-Host
     Write-Host "    -Help" -ForegroundColor $GoodColor -NoNewLine
     Write-Host " Displays this menu"
@@ -489,6 +496,8 @@ if($Module){
         $Path = get-location
         $Path =$Path.Path
         & "$Path\Modules\VynaeRegCheck.ps1" -Mode $Mode -Path $Path
+    }elseif($Module -eq 'BlackWall'){
+        & "$Path\Modules\VynaeBlackWall.ps1" -Mode $Mode
     }
     exit
 }
