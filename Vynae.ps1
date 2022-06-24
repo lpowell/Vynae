@@ -497,6 +497,8 @@ if($Module){
         $Path =$Path.Path
         & "$Path\Modules\VynaeRegCheck.ps1" -Mode $Mode -Path $Path
     }elseif($Module -eq 'BlackWall'){
+        $Path = get-location
+        $Path = $Path.Path
         & "$Path\Modules\VynaeBlackWall.ps1" -Mode $Mode
     }
     exit
