@@ -15,11 +15,13 @@ function GlobalOptions(){
 
 function RunKeys{
     $Path =@()
+    $Increment = 1
     foreach($x in Get-Item -Path Registry::HKLM\Software\Microsoft\Windows\CurrentVersion\Run\){
        foreach($y in $x.Property){
         $Execute = Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Run | Select-Object $y.Property
         $Path = $Execute -split("`"")
-        $Hash = get-filehash $Path[1]
+        $Hash = get-filehash $Path[$Increment]
+        $Increment = $increment + 2
         Write-Host "Reg Key Name: " $y
         Write-Host "Reg Key Path: HKLM:\Software\Microsoft\Windows\CurrentVersion\Run"
         Write-Host "Executable Path: " $Hash.Path
@@ -28,11 +30,13 @@ function RunKeys{
        }
         # Write-Host $Hash.Path $Hash.Hash 
     }
+    $Increment = 1
     foreach($x in Get-Item -Path Registry::HKLM\Software\Microsoft\Windows\CurrentVersion\RunOnce\){
         foreach($y in $x.Property){
          $Execute = Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Run | Select-Object $y.Property
          $Path = $Execute -split("`"")
-         $Hash = get-filehash $Path[1]
+         $Hash = get-filehash $Path[$Increment]
+         $Increment = $increment + 2
          Write-Host "Reg Key Name: " $y
          Write-Host "Reg Key Path: HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce"
          Write-Host "Executable Path: " $Hash.Path
@@ -40,11 +44,13 @@ function RunKeys{
          Write-Host
         }
     }
+    $Increment = 1
     foreach($x in Get-Item -Path Registry::HKCU\Software\Microsoft\Windows\CurrentVersion\Run\){
        foreach($y in $x.Property){
         $Execute = Get-ItemProperty HKCU:\Software\Microsoft\Windows\CurrentVersion\Run | Select-Object $y.Property
         $Path = $Execute -split("`"")
-        $Hash = get-filehash $Path[1]
+        $Hash = get-filehash $Path[$Increment]
+        $Increment = $increment + 2
         Write-Host "Reg Key Name: " $y
         Write-Host "Reg Key Path: HKCU:\Software\Microsoft\Windows\CurrentVersion\Run"
         Write-Host "Executable Path: " $Hash.Path
@@ -53,11 +59,13 @@ function RunKeys{
        }
         # Write-Host $Hash.Path $Hash.Hash 
     }
+    $Increment = 1
     foreach($x in Get-Item -Path Registry::HKCU\Software\Microsoft\Windows\CurrentVersion\Run\){
        foreach($y in $x.Property){
         $Execute = Get-ItemProperty HKCU:\Software\Microsoft\Windows\CurrentVersion\Run | Select-Object $y.Property
         $Path = $Execute -split("`"")
-        $Hash = get-filehash $Path[1]
+        $Hash = get-filehash $Path[$Increment]
+        $Increment = $increment + 2
         Write-Host "Reg Key Name: " $y
         Write-Host "Reg Key Path: HKCU:\Software\Microsoft\Windows\CurrentVersion\RunOnce"
         Write-Host "Executable Path: " $Hash.Path
