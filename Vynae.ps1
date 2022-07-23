@@ -1,4 +1,4 @@
-param($ID, $Name, [switch]$Hash, [switch]$Trace, [switch]$NetOnly, [switch]$help, [switch]$AlertOnly, [switch]$NoPath, [switch]$Service, [switch]$NetSupress, [switch]$Colorblind, $Time, $Date, $TimeActive, $ServiceState, $ParentID, $NetStatus, $Output, $Module, $Mode, [switch]$Default)
+param($ID, $Name, [switch]$Hash, [switch]$Trace, [switch]$NetOnly, [switch]$help, [switch]$AlertOnly, [switch]$NoPath, [switch]$Service, [switch]$NetSupress, [switch]$Colorblind, $Time, $Date, $TimeActive, $ServiceState, $ParentID, $NetStatus, $Output, $Module, $Mode, [switch]$Default, $Algorithm, $MatchHash)
 # Parameters accepted
 
 
@@ -96,6 +96,18 @@ function ProcessPrint($Process){
     if($TimeActive -in 0..24 -And $ActiveTime.Hours -ne [int]$TimeActive){
         return
     }
+    if($Process.ExecutablePath -And $MatchHash){
+        # System level processes pass thru filter
+        try{
+            echo 1
+            if((Get-FileHash $Process.ExecutablePath -algorithm $Algorithm).Hash -ne $MatchHash){
+                throw
+            }
+            echo $Process.ExecutablePath
+            }catch{
+                return
+            }
+    }
     $ParentPath = get-ciminstance CIM_Process | ? ProcessID -eq $Process.ParentProcessID 
     Write-Host "<-----Process Information----->" -ForegroundColor $GoodColor 
     Write-Host "Process Name: " -NoNewLine
@@ -115,7 +127,11 @@ function ProcessPrint($Process){
     }
     Write-Host "CSName:" $Process.CSName
     if($Process.ExecutablePath){
+        $ProcessHashOut =  (Get-FileHash $Process.ExecutablePath -algorithm $algorithm)
        Write-Host "Executable Path:" $Process.ExecutablePath 
+       if($Algorithm){
+        Write-Host "Executable $Algorithm Hash:" $ProcessHashOut.Hash
+       }
     }
     if($Process.CommandLine){
         Write-Host "Command Line:" $Process.CommandLine
@@ -439,6 +455,12 @@ function VynaeHelp(){
     Write-Host
     Write-Host "    -Time -Date -TimeActive" -ForegroundColor $GoodColor -NoNewLine
     Write-Host " Used to filter by date [str], time [int 0-23], and time active(hours) [int 0-23]"
+    Write-Host
+    Write-Host "    -MatchHash" -ForegroundColor $GoodColor -NoNewLine
+    Write-Host " Specify a hash value to search for"
+    Write-Host
+    Write-Host "    -Algorithm" -ForegroundColor $GoodColor -NoNewLine
+    Write-Host " Specify algorith to use with -MatchHash"
     Write-Host
     Write-Host "    -Colorblind" -ForegroundColor $GoodColor -NoNewLine
     Write-Host " Uses magenta and cyan colors to help alleviate colorblind issues"
