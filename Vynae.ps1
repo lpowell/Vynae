@@ -549,12 +549,14 @@ if($Output){
 if($PSBoundParameters.Values.Count -eq 0){
     Write-Host
     Write-Host "Vynae"
-    Write-Host "    A PowerShell tool for extracting process Information"
+    Write-Host
+    Write-Host "    A PowerShell tool for extracting process information"
     Write-Host
     Write-Host "Created By Liam Powell for use in NCCDC 2022-23"
     Write-Host
     Write-Host "For usage details, see Vynae -help"
-    Write-Host
+    Write-Host "For examples, see https://www.github.com/lpowell/vynae"
+    Write-Host "For more information, please visit https://blog.bajiri.com"
     exit
 }
 if(-Not $Trace -and -Not $Hash -And -Not $Help -And -Not $Service){
