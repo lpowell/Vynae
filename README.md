@@ -20,10 +20,20 @@ Which redirects the console stream to a file.
    
    &emsp;An addon that enumerates Run keys in HKLM and HKCU Run and RunOnce locations. It also compares hashes of items in C:\Windows\Temp to a list of known malicious hashes.
 
+   BlackWall
+    
+   This module creates a scheduled task that auto bans addresses that try (and fail) to logon remotely. 
+    
 More module information can be found in the wiki
 
 ## Usage
 
+    -Default Runs Vynae's process information gatherer
+        Gathers Name, ID, PPID Name, PPID, PPID Path, Creation Date, Active Time
+        CSName, Executable Path, and Command Line options
+
+        Filter with ID, Name, ParentID, Time options, or Net options
+        
     -ID Used to pull information on a specific ProcessID
 
     -ParentID Used to list all processes spawned by the given ParentID
@@ -32,6 +42,10 @@ More module information can be found in the wiki
 
     -Trace Used to trace a process ParentProcessID back to the originating process
             Must specify a -Name or -ID
+            
+    -MatchHash Specify a hash value to search for
+
+    -Algorithm Specify algorith to use with -MatchHash
 
     -Time -Date -TimeActive Used to filter by date [str], time [int 0-23], and time active [int 0-23]
 
@@ -51,13 +65,13 @@ More module information can be found in the wiki
     -Hash Hashes each process executable and compares it to the list Hashes.txt
             Alerts on matched hashes and processes without executable paths
             Hide No Path alerts with -NoPath, and hide No match found messages with -AlertOnly.
+            
+    -Module            Runs modules in /Modules
 
     -Help Displays this menu
-
-Running with no parameters will scan all processes and list process information and network information
     
     
-## Example usages
+## Example usage
 
     Vynae -Service -ServiceState Running -NetSupress
     
