@@ -51,7 +51,7 @@ More module information can be found in the wiki
 
     -Time -Date -TimeActive Used to filter by date [str], time [int 0-23], and time active [int 0-23]
 
-    -Colorblind Uses magenta and cyan colors to helpfully alleviate colorblind issues
+    -Colorblind Uses magenta and cyan colors to hopefully alleviate colorblind issues
 
     -NetOnly Used to only pull processes with network connections
 
