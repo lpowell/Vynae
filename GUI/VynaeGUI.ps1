@@ -111,27 +111,28 @@ function Proc_Get{
 
     $NameLabelValue.Text = ""
     $NameLabelValue.AutoSize = $true
+    $NameLabelValue.MaximumSize = New-Object System.Drawing.Point(135,0)
     $NameLabelValue.Location = New-Object System.Drawing.Point(50, 450)
     $mainform.Controls.Add($NameLabelValue)
 
     $IDLabel.Text = "Process ID:"
     $IDLabel.AutoSize = $true
-    $IDLabel.Location = New-Object System.Drawing.Point(10, 470)
+    $IDLabel.Location = New-Object System.Drawing.Point(10, 490)
     $mainform.Controls.Add($IDLabel)
 
     $IDLabelValue.Text = ""
     $IDLabelValue.AutoSize = $true
-    $IDLabelValue.Location = New-Object System.Drawing.Point(75, 470)
+    $IDLabelValue.Location = New-Object System.Drawing.Point(75, 490)
     $mainform.Controls.Add($IDLabelValue)
 
     $ParentID.Text = "Parent ID:"
     $ParentID.AutoSize = $true
-    $PArentID.Location = New-Object System.Drawing.Point(200, 470)
+    $PArentID.Location = New-Object System.Drawing.Point(200, 490)
     $mainform.Controls.Add($ParentID)
 
     $ParentIDValue.Text = ""
     $ParentIDValue.AutoSize = $true
-    $PArentIDValue.Location = New-Object System.Drawing.Point(255, 470)
+    $PArentIDValue.Location = New-Object System.Drawing.Point(255, 490)
     $mainform.Controls.Add($ParentIDValue)
 
     $ParentName.Text = "Parent Name:"
@@ -146,43 +147,63 @@ function Proc_Get{
 
     $CreationDate.Text = "Creation Date:"
     $CreationDate.AutoSize = $true
-    $CreationDate.Location = New-Object System.Drawing.Point(10, 490)
+    $CreationDate.Location = New-Object System.Drawing.Point(10, 530)
     $mainform.Controls.Add($CreationDate)
 
     $CreationDateValue.Text = ""
     $CreationDateValue.AutoSize = $true
-    $CreationDateValue.Location = New-Object System.Drawing.Point(90, 490)
+    $CreationDateValue.Location = New-Object System.Drawing.Point(90, 530)
     $mainform.Controls.Add($CreationDateValue)
 
     $Hash.Text = "Hash:"
     $Hash.AutoSize = $true
-    $Hash.Location = New-Object System.Drawing.Point(10, 530)
+    $Hash.Location = New-Object System.Drawing.Point(10, 610)
     $mainform.Controls.Add($Hash)
 
     $HashValue.Text = ""
     $HashValue.AutoSize = $true
-    $HashValue.Location = New-Object System.Drawing.Point(55, 530)
+    $HashValue.Location = New-Object System.Drawing.Point(55, 610)
     $mainform.Controls.Add($HashValue)
 
     $Location.Text = "File Location:"
     $Location.AutoSize = $true
-    $Location.Location = New-Object System.Drawing.Point(10, 510)
+    $Location.Location = New-Object System.Drawing.Point(10, 570)
     $mainform.Controls.Add($Location)
 
     $LocationValue.Text = ""
+    $LocationValue.MaximumSize = New-Object System.Drawing.Point(275,0)
     $LocationValue.AutoSize = $true
-    $LocationValue.Location = New-Object System.Drawing.Point(80, 510)
+    $LocationValue.Location = New-Object System.Drawing.Point(80, 570)
     $mainform.Controls.Add($LocationValue)
 
     $CommandLine.Text = "Command Line Arguments:"
     $CommandLine.AutoSize = $true
-    $CommandLine.Location = New-Object System.Drawing.Point(10, 550)
+    $CommandLine.Location = New-Object System.Drawing.Point(10, 650)
     $mainform.Controls.Add($CommandLine)
 
     $CommandLineValue.Text = ""
     $CommandLineValue.AutoSize = $true
-    $CommandLineValue.Location = New-Object System.Drawing.Point(10, 570)
+    $CommandLineValue.MaximumSize = New-Object System.Drawing.Point(350,0)
+    $CommandLineValue.Location = New-Object System.Drawing.Point(10, 670)
     $mainform.Controls.Add($CommandLineValue)
+
+    # Create Label 
+    $NetLabel = New-Object System.Windows.Forms.Label
+    $NetLabel.Text = "Network Connections"
+    $NetLabel.AutoSize = $true
+    $NetLabel.Location = New-Object System.Drawing.Point(600,400)
+    $mainform.Controls.Add($NetLabel)
+
+    # Create ListView
+    $global:NetList = New-Object System.Windows.Forms.datagridview
+    $NetList.ReadOnly = $True
+    $NetList.Visible = $true
+
+    # Place List
+    $NetList.Location = New-Object System.Drawing.Point(600, 450)
+    $NetList.Width = $mainform.Width * .45
+    $NetList.Height = $mainform.Height * .35
+    $mainform.Controls.Add($NetList)
 
 
     # Place Button & Create Button_Clicked event
@@ -202,9 +223,37 @@ function Proc_Get{
         $HashValue.Text = $H.Hash
         $CommandLineValue.Text = $P.CommandLine
 
+        # Pass to Network function
+        NetDisplay($P.ProcessID)
         # write-host $ProcList.SelectedCells.Value
         write-host $ProcList.CurrentRow.Cells[1].Value
         })
+
+}
+
+# Function to create and display the Network Information in a ListView
+function NetDisplay($ProcID){
+
+    # Check if Network info exists
+    if(Get-NetTCPConnection | ? OwningProcess -eq $ProcID){
+
+        # Create Data Array of Network Information
+        $NetData = get-nettcpconnection | ? OwningProcess -eq $ProcID | Select LocalAddress, LocalPort, RemoteAddress, RemotePort, State
+        $NetDataArray = New-Object System.Collections.ArrayList
+        write-host $NetData
+        $NetDataArray.AddRange($NetData)
+
+        # Add array as data source for Data Grid View Object
+        $NetList.DataSource = $NetDataArray
+
+        # Resize the Data Grid columns to fill the object space
+        $NetList.AutoSizeColumnsMode = [System.Windows.Forms.DataGridViewAutoSizeColumnsMode]::Fill
+        }else{
+
+            # Clear Data Grid if no network information
+            $NetList.DataSource = $null
+            $NetList.Rows.Clear()
+        }
 
 }
 
