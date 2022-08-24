@@ -109,6 +109,36 @@ function Proc_Get{
             $ProcDataArray = New-Object System.Collections.ArrayList
             $ProcDataArray.AddRange(@($ProcData))
             $ProcList.DataSource = $ProcDataArray
+        }elseif($out[0] -eq "Trace"){
+            $global:GetParent = Get-Ciminstance CIM_Process | ? ProcessID -eq $out[1]
+            $ParentArray =@()
+            $ParentArray += $GetParent | Select Name, ProcessID, ParentProcessID, ExecutablePath, CreationDate
+            $quit = $false
+            While($quit -ne $true){
+                # Wrap in if to test if the parent exists and is not 0
+                if((Get-Ciminstance CIM_Process | ? ProcessID -eq $GetParent.ParentProcessID) -And $GetParent.ParentProcessID -ne 0){
+                    # Get the parent ID
+                    $ParentID = Get-Ciminstance CIM_Process | ? ProcessID -eq $GetParent.ParentProcessID | Select Name, ProcessID, ParentProcessID, ExecutablePath, CreationDate
+                    # store the ID
+                    $ParentArray += $ParentID
+                    # Set Get-Parent to the new process ID 
+                    $GetParent = $ParentID.ProcessID
+                    # Print for testing
+                    write-host $ParentArray
+
+                    # Reset DataGridView
+                    $ProcList.DataSource = $null
+                    $ProcList.Rows.Clear()
+
+                    # Add new Data Source
+                    $ProcDataArray = New-Object System.Collections.ArrayList
+                    $ProcDataArray.AddRange(@($ParentArray))
+                    $ProcList.DataSource = $ProcDataArray
+                }else{
+                    Clear-Variable ParentArray
+                    $quit = $True
+                }
+            }
         }else{
             $ProcData = Get-Ciminstance CIM_Process | Select Name, ProcessID, ParentProcessID, ExecutablePath, CreationDate
             $ProcDataArray = New-Object System.Collections.ArrayList
