@@ -4,6 +4,8 @@ Vynae is a PowerShell tool that displays key process information and supports a 
 
 Vynae also has partial support for service scanning as well. Service scans can be filtered by name or state, and Vynae will attempt to pull network information. Service scans can also access the networking options NetSupress, NetStatus, and NetOnly.
 
+Vynae now has a GUI under development! It uses windows forms via the .net framework. Because I've decided that Vynae should remain 100% PowerShell for some reason, I've manually written the entire GUI in sublime instead of using VisualStudio's nice editor. Right now, it supports the same level of information as a net suppressed default scan. It shows Process Name, ID, Parent Name, Parent ID, Creation Date, Location, Hash, and Command Line Arguments. The next thing being wokred on will be networking information, followed by adding a filtering function via a search bar at the top. 
+
 Currently, Vynae only supports output through Start-Transcript which is accessed with -Output. Output can also be directed to a file using 
 
     Vynae -SomeParameter SomeArgument *> SomeFile.txt
@@ -49,7 +51,7 @@ More module information can be found in the wiki
 
     -Time -Date -TimeActive Used to filter by date [str], time [int 0-23], and time active [int 0-23]
 
-    -Colorblind Uses magenta and cyan colors to helpfully alleviate colorblind issues
+    -Colorblind Uses magenta and cyan colors to hopefully alleviate colorblind issues
 
     -NetOnly Used to only pull processes with network connections
 
