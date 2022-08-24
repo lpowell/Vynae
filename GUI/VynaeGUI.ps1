@@ -1,8 +1,4 @@
-# Memory dumps with procdump 
-# Pass process ID to procdump -- NOT THE NAME
-
-# Description & Goals 
-# List processes and allow user to select a process from the list and dump the memory using procdump
+# Vynae GUI Option
 
 
 # GUI Init
@@ -58,7 +54,7 @@ function Proc_Get{
     # Create Data Array of Process Information
     $ProcData = Get-Ciminstance CIM_Process | Select Name, ProcessID, ParentProcessID, ExecutablePath, CreationDate
     $ProcDataArray = New-Object System.Collections.ArrayList
-    $ProcDataArray.AddRange($ProcData)
+    $ProcDataArray.AddRange(@($ProcData))
 
     # Add array as data source for Data Grid View Object
     $ProcList.DataSource = $ProcDataArray
@@ -67,13 +63,62 @@ function Proc_Get{
     $ProcList.AutoSizeColumnsMode = [System.Windows.Forms.DataGridViewAutoSizeColumnsMode]::Fill
 
     # Place List 
-    $ProcList.Location = New-Object System.Drawing.Point(10,20)
+    $ProcList.Location = New-Object System.Drawing.Point(10,50)
 
     # Add to Form
     $mainform.Controls.Add($ProcList)
 
+    # Add a search bar 
+    $global:ProcSearch = New-Object System.Windows.Forms.TextBox
+    $ProcSearch.Text = "filter..."
+    $ProcSearch.Location = New-Object System.Drawing.Point(100,23)
+    $ProcSearch.Width = $mainform.Width * .80
+    $ProcSearch.Height = 10
+    $mainform.Controls.Add($ProcSearch)
 
-    # Create Buttons
+
+    # Add a search button
+    $SearchButton = New-Object System.Windows.Forms.Button
+    $SearchButton.Text = "Filter"
+    $SearchButton.AutoSize = $true
+    $SearchButton.Location = New-Object System.Drawing.Point(10,20)
+    $mainform.Controls.Add($SearchButton)
+
+    # Filter stuff
+    $SearchButton.Add_Click({
+        $out = $ProcSearch.Text -split '='
+        write-host $out[0], $out[1]
+        if($out[0] -eq "Name"){
+            $ProcList.DataSource = $null
+            $Proclist.Rows.Clear()
+            $ProcData = Get-Ciminstance CIM_Process | ? Name -match $out[1] | Select Name, ProcessID, ParentProcessID, ExecutablePath, CreationDate
+            $ProcDataArray = New-Object System.Collections.ArrayList
+            $ProcDataArray.AddRange(@($ProcData))
+            $ProcList.DataSource = $ProcDataArray
+        }elseif($out[0] -eq "ID"){
+            $ProcList.DataSource = $null
+            $Proclist.Rows.Clear()
+            $ProcData = Get-Ciminstance CIM_Process | ? ProcessID -eq $out[1] | Select Name, ProcessID, ParentProcessID, ExecutablePath, CreationDate
+            $ProcDataArray = New-Object System.Collections.ArrayList
+            $ProcDataArray.AddRange(@($ProcData))
+            $ProcList.DataSource = $ProcDataArray
+        }elseif($out[0] -eq "ParentID"){
+            $ProcList.DataSource = $null
+            $Proclist.Rows.Clear()
+            $ProcData = Get-Ciminstance CIM_Process | ? ParentProcessID -eq $out[1] | Select Name, ProcessID, ParentProcessID, ExecutablePath, CreationDate
+            $ProcDataArray = New-Object System.Collections.ArrayList
+            $ProcDataArray.AddRange(@($ProcData))
+            $ProcList.DataSource = $ProcDataArray
+        }else{
+            $ProcData = Get-Ciminstance CIM_Process | Select Name, ProcessID, ParentProcessID, ExecutablePath, CreationDate
+            $ProcDataArray = New-Object System.Collections.ArrayList
+            $ProcDataArray.AddRange(@($ProcData))
+            $ProcList.DataSource = $ProcDataArray
+        }
+        })
+
+
+    # Create Buttons [rename to procbutton]
     $DumpButton = New-Object System.Windows.Forms.Button
 
     # Highlighted Process Information
@@ -191,7 +236,7 @@ function Proc_Get{
     $NetLabel = New-Object System.Windows.Forms.Label
     $NetLabel.Text = "Network Connections"
     $NetLabel.AutoSize = $true
-    $NetLabel.Location = New-Object System.Drawing.Point(600,400)
+    $NetLabel.Location = New-Object System.Drawing.Point(600,420)
     $mainform.Controls.Add($NetLabel)
 
     # Create ListView
@@ -207,7 +252,7 @@ function Proc_Get{
 
 
     # Place Button & Create Button_Clicked event
-    $DetailsLabel.Location = New-Object System.Drawing.Point(10, 400)
+    $DetailsLabel.Location = New-Object System.Drawing.Point(10, 420)
     $mainform.Controls.Add($DetailsLabel)
     $DetailsLabel.Add_Click(
     {
@@ -241,7 +286,7 @@ function NetDisplay($ProcID){
         $NetData = get-nettcpconnection | ? OwningProcess -eq $ProcID | Select LocalAddress, LocalPort, RemoteAddress, RemotePort, State
         $NetDataArray = New-Object System.Collections.ArrayList
         write-host $NetData
-        $NetDataArray.AddRange($NetData)
+        $NetDataArray.AddRange(@($NetData))
 
         # Add array as data source for Data Grid View Object
         $NetList.DataSource = $NetDataArray
