@@ -12,21 +12,21 @@ Currently, Vynae only supports output through Start-Transcript which is accessed
 
 Which redirects the console stream to a file.
 
-## Modules
-    
-   Integrity
-   
-   &emsp;An addon that creates a control list of processes and regularly checks the control list to the current list of processes and reports diffrences.
-   
-   RegCheck
-   
-   &emsp;An addon that enumerates Run keys in HKLM and HKCU Run and RunOnce locations. It also compares hashes of items in C:\Windows\Temp to a list of known malicious hashes.
+## Vynae GUI 
+VynaeGUI 
+![image](https://user-images.githubusercontent.com/3990346/186321669-365a3292-1547-4651-8b5f-51715054db9f.png)
+The GUI version of Vynae supports several filter types. 
 
-   BlackWall
+    Name=ProcessName
+    ID=ProcessID
+    ParentID=ParentProcessID
+    Trace=ProcessID
     
-   This module creates a scheduled task that auto bans addresses that try (and fail) to logon remotely. 
+More filters are being worked on to bring full CLI functionality to the GUI version. 
     
-More module information can be found in the wiki
+## Vynae CLI
+![image](https://user-images.githubusercontent.com/3990346/186322787-964f07b7-7c86-4829-a646-53de2797db78.png)
+(Default scan)
 
 ## Usage
 
@@ -110,6 +110,22 @@ This will hash all active processes, only showing alerts and supressing the 'No 
     Vynae -NetOnly -Name chrome -Colorblind
     
 This will display chrome processes with network connections with more colorblind-friendly colors (Magenta and Cyan)
+
+## Modules
+    
+   Integrity
+   
+   &emsp;An addon that creates a control list of processes and regularly checks the control list to the current list of processes and reports diffrences.
+   
+   RegCheck
+   
+   &emsp;An addon that enumerates Run keys in HKLM and HKCU Run and RunOnce locations. It also compares hashes of items in C:\Windows\Temp to a list of known malicious hashes.
+
+   BlackWall
+    
+   This module creates a scheduled task that auto bans addresses that try (and fail) to logon remotely. 
+    
+More module information can be found in the wiki
     
 # History
 This project started as an offshoot of a small script written for CCDC wherein I needed to quickly identify key information about a specific process without access to Process Explorer. I've developed it further in my spare time, and plan on adding additional features over time. Ideally, it will be a light-weight CLI tool for quickly accessing process information.
