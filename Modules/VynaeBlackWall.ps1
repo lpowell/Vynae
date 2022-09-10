@@ -36,10 +36,8 @@ function IPDetect{
     }
 }
 function Task{
-    [string]$scheduledtask = get-content "$Path\BlackWall.xml"
-    # $scheduledtask.Task.Actions.Exec.Command = "`"$Path\VynaeBlackWall.ps1`""
-    # write-host $Path\BlackWall.xml
-    $scheduledtask = $scheduledtask.replace('$Path',"$Path\VynaeBlackWall.ps1")
+    [string]$scheduledtask = get-content "$Path\Modules\BlackWall.xml"
+    $scheduledtask = $scheduledtask.replace('$Path',"$Path\Modules\VynaeBlackWall.ps1")
     $scheduledtask | out-string
     Register-ScheduledTask -Xml $scheduledtask -TaskName "Vynae BlackWall"
 }

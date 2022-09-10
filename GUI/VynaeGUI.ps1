@@ -9,7 +9,7 @@ function GuiInit{
     $global:mainform = New-Object System.Windows.Forms.Form
 
     # Form Settings
-    $mainform.Text ="Vynae Process Exploration GUI"
+    $mainform.Text ="Vynae Process Explorer"
     $mainform.Width = 1200
     $mainform.Height = 900
     $mainform.MaximizeBox = $false
@@ -303,6 +303,18 @@ function Proc_Get{
         # write-host $ProcList.SelectedCells.Value
         write-host $ProcList.CurrentRow.Cells[1].Value
         })
+
+    # Create a help button because I forgot to make it earlier
+    $HelpButton = New-Object System.Windows.Forms.Button
+    $HelpButton.Text = "Help"
+    $HelpButton.AutoSize = $true
+    $HelpButton.Location = New-Object System.Drawing.Point(1075,20)
+    $mainform.Controls.Add($HelpButton)
+    $HelpButton.Add_Click(
+    {
+        [System.Windows.Forms.MessageBox]::Show("VynaeGUI`nFilters are in the format of filter=context`nExample filters:`n    name=`n    ID=`n    ParentID=`n    Trace=`nFilters are straightforward. ParentID will bringup processes spawned by the given ID. Trace will trace back the given ID to the earliest parent process.`n`n If you do not see executable paths for system processes, please relaunch the application as an administrator.")
+        })
+
 
 }
 
