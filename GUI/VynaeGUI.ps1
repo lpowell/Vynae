@@ -312,7 +312,7 @@ function Proc_Get{
     $mainform.Controls.Add($HelpButton)
     $HelpButton.Add_Click(
     {
-        [System.Windows.Forms.MessageBox]::Show("VynaeGUI`nFilters are in the format of filter=context`nExample filters:`n    name=`n    ID=`n    ParentID=`n    Trace=`nFilters are straightforward. ParentID will bringup processes spawned by the given ID. Trace will trace back the given ID to the earliest parent process.`n`n If you do not see executable paths for system processes, please relaunch the application as an administrator.")
+        [System.Windows.Forms.MessageBox]::Show("VynaeGUI`nFilters are in the format of filter=context`nExample filters:`n    name=`n    ID=`n    ParentID=`n    Trace=`nFilters are straightforward. ParentID will bringup processes spawned by the given ID. Trace will trace back the given ID to the earliest parent process.`n`nIf you do not see executable paths for system processes, please relaunch the application as an administrator.", "Vynae Help")
         })
 
 
