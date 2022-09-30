@@ -96,17 +96,15 @@ function ProcessPrint($Process){
     if($TimeActive -in 0..24 -And $ActiveTime.Hours -ne [int]$TimeActive){
         return
     }
-    if($Process.ExecutablePath -And $MatchHash){
-        # System level processes pass thru filter
+    if($MatchHash){
         try{
-            echo 1
-            if((Get-FileHash $Process.ExecutablePath -algorithm $Algorithm).Hash -ne $MatchHash){
+            if((Get-FileHash $Process.ExecutablePath -algorithm $algorithm).Hash -ne $MatchHash){
                 throw
             }
-            echo $Process.ExecutablePath
-            }catch{
-                return
-            }
+            write-host $Process.ExecutablePath
+        }catch{
+            return
+        }
     }
     $ParentPath = get-ciminstance CIM_Process | ? ProcessID -eq $Process.ParentProcessID 
     Write-Host "<-----Process Information----->" -ForegroundColor $GoodColor 
