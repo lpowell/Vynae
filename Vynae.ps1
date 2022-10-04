@@ -1,4 +1,4 @@
-param($ID, $Name, [switch]$Hash, [switch]$Trace, [switch]$NetOnly, [switch]$help, [switch]$AlertOnly, [switch]$NoPath, [switch]$Service, [switch]$NetSupress, [switch]$Colorblind, $Time, $Date, $TimeActive, $ServiceState, $ParentID, $NetStatus, $Output, $Module, $Mode, [switch]$Default, $Algorithm, $MatchHash)
+param($ID, $Name, [switch]$Hash, [switch]$Trace, [switch]$NetOnly, [switch]$help, [switch]$AlertOnly, [switch]$NoPath, [switch]$Service, [switch]$NetSupress, [switch]$Colorblind, $Time, $Date, $TimeActive, $ServiceState, $ParentID, $NetStatus, $Output, $Module, $Mode, [switch]$Default, $Algorithm, $MatchHash, $RemoteAddress, $LocalAddress)
 # Parameters accepted
 
 
@@ -62,7 +62,21 @@ function ProcessInformation(){
                             ProcessPrint($x)
                         }
                     }
-                }else{
+                }elseif($LocalAddress){
+                    foreach($x in (get-ciminstance CIM_Process)){
+                        $TestNetConnection = get-nettcpconnection | ? OwningProcess -eq $x.ProcessID | ? LocalAddress -eq $LocalAddress
+                        if($TestNetConnection){
+                            ProcessPrint($x)
+                        }
+                    }
+                    }elseif($RemoteAddress){
+                    foreach($x in (get-ciminstance CIM_Process)){
+                        $TestNetConnection = get-nettcpconnection | ? OwningProcess -eq $x.ProcessID | ? RemoteAddress -eq $RemoteAddress
+                        if($TestNetConnection){
+                            ProcessPrint($x)
+                        }
+                    }
+                    }else{
                 if($NetOnly -or $NetStatus){
                     foreach($x in (get-ciminstance CIM_Process)){
                         try{
@@ -161,14 +175,18 @@ function NetworkPrint($Conn){
     if($Conn.LocalAddress | Select-String -Pattern "::"){
         if($Conn.LocalAddress -eq '::'){
             Write-Host "Local IPv6 Address/Port:" -NoNewLine
-            Write-Host "any" -ForegroundColor $BadColor -NoNewLine
+            Write-Host " ALL ADDRESSES " -ForegroundColor $BadColor -NoNewLine
             Write-Host ":" $Conn.LocalPort
-        }else{
+        }elseif($Conn.LocalAddress -eq '::1'){
+            Write-Host "Local IPv6 Address/Port:" -NoNewLine
+            Write-Host " LOCALHOST " -ForegroundColor $BadColor -NoNewLine
+            Write-Host ":" $Conn.LocalPort
+            }else{
             Write-Host "Local IPv6 Address/Port: " $Conn.LocalAddress ":" $Conn.LocalPort   
         }
         if($Conn.RemoteAddress -eq '::'){
             Write-Host "Remote IPv6 Address/Port:" -NoNewLine
-            Write-Host "any" -ForegroundColor $BadColor -NoNewLine
+            Write-Host " ALL ADDRESSES " -ForegroundColor $BadColor -NoNewLine
             Write-Host ":" $Conn.RemotePort
         }else{
             Write-Host "Remote IPv6 Address/Port:" $Conn.RemoteAddress ":" $Conn.RemotePort
@@ -176,14 +194,22 @@ function NetworkPrint($Conn){
     }else{
         if($Conn.LocalAddress -eq '0.0.0.0'){
             Write-Host "Local IPv4 Address/Port:" -NoNewLine
-            Write-Host "any" -ForegroundColor $BadColor -NoNewLine
+            Write-Host " ALL ADDRESSES " -ForegroundColor $BadColor -NoNewLine
+            Write-Host ":" $Conn.LocalPort
+        }elseif($Conn.LocalAddress -eq '127.0.0.1'){
+            Write-Host "Local IPv4 Address/Port:" -NoNewLine
+            Write-Host " LOCALHOST " -ForegroundColor $BadColor -NoNewLine
             Write-Host ":" $Conn.LocalPort
         }else{
             Write-Host "Local IPv4 Address/Port:" $Conn.LocalAddress ":" $Conn.LocalPort
         }
         if($Conn.RemoteAddress -eq '0.0.0.0'){
             Write-Host "Remote IPv4 Address/Port:" -NoNewLine
-            Write-Host "any" -ForegroundColor $BadColor -NoNewLine
+            Write-Host " ALL ADDRESSES " -ForegroundColor $BadColor -NoNewLine
+            Write-Host ":" $Conn.RemotePort
+        }elseif($Conn.RemoteAddress -eq '127.0.0.1'){
+            Write-Host "Local IPv4 Address/Port:" -NoNewLine
+            Write-Host " LOCALHOST " -ForegroundColor $BadColor -NoNewLine
             Write-Host ":" $Conn.RemotePort
         }else{
             Write-Host "Remote IPv4 Address/Port:" $Conn.RemoteAddress ":" $Conn.RemotePort
@@ -450,6 +476,9 @@ function VynaeHelp(){
     Write-Host "    -Trace" -ForegroundColor $GoodColor -NoNewLine
     Write-Host " Used to trace a process ParentProcessID back to the originating process"
     Write-Host "            Must specify a -Name or -ID"
+    Write-Host
+    Write-Host "    -LocalAddress/RemoteAddress" -ForegroundColor $GoodColor -NoNewLine
+    Write-Host " Used to search processes by remote or local address. Supports IPv4 and IPv6 addresses"
     Write-Host
     Write-Host "    -Time -Date -TimeActive" -ForegroundColor $GoodColor -NoNewLine
     Write-Host " Used to filter by date [str], time [int 0-23], and time active(hours) [int 0-23]"
