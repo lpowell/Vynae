@@ -16,7 +16,7 @@ function GlobalOptions(){
             $global:BadColor = 'red'
         }
 }
-# if name elif id else default && use params for name and id
+# Primary Filters
 function ProcessInformation(){
     if($Name){
         if($NetOnly -or $NetStatus){
@@ -98,7 +98,7 @@ function ProcessInformation(){
                     }   
             }
 }
-
+#Print Filters and Information print functions
 function ProcessPrint($Process){
     $ActiveTime = New-TimeSpan -Start $Process.CreationDate -End $DateTime
     if($Date -And $Process.CreationDate.Date  -notcontains $Date){
