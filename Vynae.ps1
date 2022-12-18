@@ -1,4 +1,4 @@
-param($ID, $Name, [switch]$Hash, [switch]$Trace, [switch]$NetOnly, [switch]$help, [switch]$AlertOnly, [switch]$NoPath, [switch]$Service, [switch]$NetSupress, [switch]$Colorblind, $Time, $Date, $TimeActive, $ServiceState, $ParentID, $NetStatus, $Output, $Module, $Mode, [switch]$Default, $Algorithm, $MatchHash, $RemoteAddress, $LocalAddress)
+param($ID, $Name, [switch]$Hash, [switch]$Trace, [switch]$NetOnly, [switch]$help, [switch]$AlertOnly, [switch]$NoPath, [switch]$Service, [switch]$NetSupress, [switch]$Colorblind, $Time, $Date, $TimeActive, $ServiceState, $ParentID, $NetStatus, $Output, $Module, $Mode, [switch]$Default, $Algorithm, $MatchHash, $RemoteAddress, $LocalAddress, $LocalPort, $RemotePort)
 # Parameters accepted
 
 
@@ -76,7 +76,19 @@ function ProcessInformation(){
                             ProcessPrint($x)
                         }
                     }
-                    }else{
+                    }elseif($LocalPort){
+                        foreach($x in (get-ciminstance CIM_Process)){
+                            $TestNetConnection = get-nettcpconnection | ? OwningProcess -eq $x.ProcessID | ? LocalPort -eq $LocalPort
+                            if($TestNetConnection){
+                                ProcessPrint($x)
+                            }
+                        }
+                        }elseif($RemotePort){
+                            $TestNetConnection = get-nettcpconnection | ? OwningProcess -eq $x.ProcessID | ? RemotePort -eq $RemotePort
+                            if($TestNetConnection){
+                                ProcessPrint($x)
+                            }
+                            }else{
                 if($NetOnly -or $NetStatus){
                     foreach($x in (get-ciminstance CIM_Process)){
                         try{
