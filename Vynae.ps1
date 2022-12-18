@@ -22,12 +22,12 @@ function ProcessInformation(){
         if($NetOnly -or $NetStatus){
             foreach($x in (get-ciminstance CIM_Process | ? Name -match $Name)){
                 try{
-                    $TestNetConnection = get-nettcpconnection | ? OwningProcess -eq $x.ProcessID | ? State -eq $NetStatus
+                    $TestNetConnection = get-nettcpconnection -OwningProcess $x.ProcessID -State $NetStatus
                     if($NetStatus -eq $null){
                         throw
                     }
                     }catch{
-                        $TestNetConnection = get-nettcpconnection | ? OwningProcess -eq $x.ProcessID 
+                        $TestNetConnection = get-nettcpconnection -OwningProcess $x.ProcessID 
                     }
                 if($TestNetConnection){
                     ProcessPrint($x)
@@ -46,12 +46,12 @@ function ProcessInformation(){
                 if($NetOnly -or $NetStatus){
                     foreach($x in (get-ciminstance CIM_Process | ? ParentProcessID -eq $ParentID)){
                         try{
-                            $TestNetConnection = get-nettcpconnection | ? OwningProcess -eq $x.ProcessID | ? State -eq $NetStatus
+                            $TestNetConnection = get-nettcpconnection -OwningProcess $x.ProcessID -State $NetStatus
                             if($NetStatus -eq $null){
                                 throw
                             }
                             }catch{
-                                $TestNetConnection = get-nettcpconnection | ? OwningProcess -eq $x.ProcessID 
+                                $TestNetConnection = get-nettcpconnection -OwningProcess $x.ProcessID 
                             }
                         if($TestNetConnection){
                             ProcessPrint($x)
@@ -64,40 +64,42 @@ function ProcessInformation(){
                     }
                 }elseif($LocalAddress){
                     foreach($x in (get-ciminstance CIM_Process)){
-                        $TestNetConnection = get-nettcpconnection | ? OwningProcess -eq $x.ProcessID | ? LocalAddress -eq $LocalAddress
+                        $TestNetConnection = get-nettcpconnection -OwningProcess $x.ProcessID -LocalAddress $LocalAddress
                         if($TestNetConnection){
                             ProcessPrint($x)
                         }
                     }
                     }elseif($RemoteAddress){
                     foreach($x in (get-ciminstance CIM_Process)){
-                        $TestNetConnection = get-nettcpconnection | ? OwningProcess -eq $x.ProcessID | ? RemoteAddress -eq $RemoteAddress
+                        $TestNetConnection = get-nettcpconnection -OwningProcess $x.ProcessID -RemoteAddress $RemoteAddress
                         if($TestNetConnection){
                             ProcessPrint($x)
                         }
                     }
                     }elseif($LocalPort){
                         foreach($x in (get-ciminstance CIM_Process)){
-                            $TestNetConnection = get-nettcpconnection | ? OwningProcess -eq $x.ProcessID | ? LocalPort -eq $LocalPort
+                            $TestNetConnection = get-nettcpconnection -OwningProcess $x.ProcessID -LocalPort $LocalPort
                             if($TestNetConnection){
                                 ProcessPrint($x)
                             }
                         }
                         }elseif($RemotePort){
-                            $TestNetConnection = get-nettcpconnection | ? OwningProcess -eq $x.ProcessID | ? RemotePort -eq $RemotePort
-                            if($TestNetConnection){
-                                ProcessPrint($x)
+                            foreach($x in (get-ciminstance CIM_Process)){
+                                $TestNetConnection = get-nettcpconnection -OwningProcess $x.ProcessID -RemotePort $RemotePort
+                                if($TestNetConnection){
+                                    ProcessPrint($x)
+                                }
                             }
                             }else{
                 if($NetOnly -or $NetStatus){
                     foreach($x in (get-ciminstance CIM_Process)){
                         try{
-                            $TestNetConnection = get-nettcpconnection | ? OwningProcess -eq $x.ProcessID | ? State -eq $NetStatus
+                            $TestNetConnection = get-nettcpconnection -OwningProcess $x.ProcessID -State $NetStatus
                             if($NetStatus -eq $null){
                                 throw
                             }
                             }catch{
-                                $TestNetConnection = get-nettcpconnection | ? OwningProcess -eq $x.ProcessID 
+                                $TestNetConnection = get-nettcpconnection -OwningProcess $x.ProcessID 
                             }
                         if($TestNetConnection){
                             ProcessPrint($x)
