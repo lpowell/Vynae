@@ -1,5 +1,7 @@
 # Vynae - A PowerShell tool for extracting process information.
 # About
+Now available as a module at https://www.powershellgallery.com/packages/Vynae!
+
 Vynae is a PowerShell tool that displays key process information and supports a variety of searching methods and process tracing. For example, Vynae can trace a process back to it's originating process, or list all processes spawned by a given PPID. Processes can also be selectively displayed, such as listing only processes with a network state of 'Established'. Vynae also supports hash comparisons between active processes and known-malicious files. 
 
 Vynae also has partial support for service scanning as well. Service scans can be filtered by name or state, and Vynae will attempt to pull network information. Service scans can also access the networking options NetSupress, NetStatus, and NetOnly.
@@ -52,7 +54,13 @@ More filters are being worked on to bring full CLI functionality to the GUI vers
     -Time -Date -TimeActive Used to filter by date [str], time [int 0-23], and time active [int 0-23]
 
     -Colorblind Uses magenta and cyan colors to hopefully alleviate colorblind issues
-
+    
+    -LocalAddres/RemoteAddress
+        Filter processes by address. 
+        
+    -LocalPort/RemotePort
+        Filter processes by connection port.
+    
     -NetOnly Used to only pull processes with network connections
 
     -NetStatus Used to only pull processes with matching network connection states
