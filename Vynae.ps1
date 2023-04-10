@@ -1,4 +1,4 @@
-param($ID, $Name, [switch]$Hash, [switch]$Trace, [switch]$NetOnly, [switch]$help, [switch]$AlertOnly, [switch]$NoPath, [switch]$Service, [switch]$NetSupress, [switch]$Colorblind, $Time, $Date, $TimeActive, $ServiceState, $ParentID, $NetStatus, $Output, $Module, $Mode, [switch]$Default, $Algorithm, $MatchHash, $RemoteAddress, $LocalAddress, $LocalPort, $RemotePort)
+param($ID, $Name, [switch]$Hash, [switch]$Trace, [switch]$NetOnly, [switch]$help, [switch]$AlertOnly, [switch]$NoPath, [switch]$Service, [switch]$NetSupress, [switch]$Colorblind, $Time, $Date, $TimeActive, $ServiceState, $ParentID, $NetStatus, $Output, $Module, $Mode, [switch]$Default, $Algorithm, $MatchHash, $RemoteAddress, $LocalAddress, $LocalPort, $RemotePort, $ExePath)
 # Parameters accepted
 
 
@@ -131,6 +131,11 @@ function ProcessPrint($Process){
             }
             write-host $Process.ExecutablePath
         }catch{
+            return
+        }
+    }
+    if($ExePath){
+        if($Process.ExecutablePath -notmatch $ExePath){
             return
         }
     }
@@ -486,6 +491,9 @@ function VynaeHelp(){
     Write-Host
     Write-Host "    -Name" -ForegroundColor $GoodColor -NoNewLine
     Write-Host " Used to pull information on ALL processes whose names match the value"
+    Write-Host
+    Write-Host "    -ExePath" -ForegroundColor $GoodColor -NoNewLine
+    Write-Host " Specify executable path for processes. E.g., -ExePath Desktop for processes running from the Desktop"
     Write-Host
     Write-Host "    -Trace" -ForegroundColor $GoodColor -NoNewLine
     Write-Host " Used to trace a process ParentProcessID back to the originating process"
